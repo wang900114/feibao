@@ -1,0 +1,694 @@
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+body {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+/*
+ * Remove text-shadow in selection highlight: h5bp.com/i
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+    background: #f2c2c9;
+    color: #a4003a;
+    text-shadow: none;
+}
+
+::selection {
+    background: #f2c2c9;
+    color: #a4003a;
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+ hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*
+ * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
+ */
+
+ img {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+ fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+ textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Chrome Frame prompt
+   ========================================================================== */
+
+   .chromeframe {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+/* ==========================================================================
+   General styles
+   ========================================================================== */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    padding: 0;
+    font-family: "微软雅黑";
+    font-weight: 300;
+    font-size: 12px;
+    color: #777;
+    overflow: auto;
+    overflow-x: hidden;
+
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+}
+
+iframe {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+hr {
+    position: relative;
+    border: none;
+}
+
+hr:before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: 25%;
+    width: 50%;
+    height: 2px;
+    background: #ccc;
+}
+
+a img {
+    background: white;
+}
+
+.odd a img {
+    background: #f5f5f5;
+}
+
+/* Titles */
+h1, h2, h3, h4, h5, h6 {
+    font-family: "微软雅黑";
+    font-weight: 300;
+    color: #333;
+}
+
+/* Leading itle */
+.lead-title {
+    font-family: "微软雅黑";
+    position: relative;
+    font-size: 48px;
+    text-transform: uppercase;
+    text-align: center;
+    padding-bottom: 32px;
+    margin-bottom: 42px;
+    line-height: 56px;
+}
+
+.lead-title:before,
+.short-border:before {
+    content: " ";
+    position: absolute;
+    bottom: 0;
+    left: 32%;
+    height: 2px;
+    width: 35%;
+    background: #333;
+}
+
+/* Paragraph title */
+.paragraph-title {
+    font-family: "微软雅黑";
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+/* Sub title */
+.sub-title {
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 40px;
+    line-height: 36px;
+}
+
+/* Block title */
+.block-title {
+    font-size: 90px;
+    line-height: 10px;
+	height: 80px;
+	border-bottom:#FFF solid 1px;
+	font-weight:800;
+	text-align:center;
+	color:#FFF
+}
+
+/* Text Block title */
+.text-title {
+    font-family: "微软雅黑";
+    font-size: 24px;
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 15px;
+    line-height: 28px;
+}
+
+/* Strong title */
+.strong-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    line-height: 28px;
+}
+
+/* Article title */
+.article-title {
+    font-family: "微软雅黑";
+    font-size: 48px;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    line-height: 56px;
+    border-bottom: 1px solid #ddd;
+}
+
+.short-border {
+    position: relative;
+    padding-bottom: 30px;
+    margin-bottom: 45px;
+}
+
+/* Paragraph & Typographic */
+p {
+    line-height: 28px;
+    margin-bottom: 25px;
+}
+
+.centered {
+    text-align: center;
+}
+
+.paragraph-lead {
+    font-size: 20px;
+    color: #b85252;
+}
+
+strong {
+    font-weight: 700;
+}
+
+em {
+    font-weight: 300;
+}
+
+pre {
+    background: #ebebeb;
+    border: none;
+    font-family: "Monaco";
+    font-size: 16px;
+    color: #666;
+    padding: 20px;
+    line-height: 28px;
+}
+
+small {
+    font-size: 12px;
+}
+
+blockquote,
+blockquote p {
+    line-height: 28px;
+    color: #999;
+    font-weight: 300;
+    font-style: italic;
+}
+
+blockquote {
+    position: relative;
+    margin: 0 0 40px -30px;
+    padding-left: 30px;
+    border-left: 5px solid #b85252;
+}
+
+blockquote cite {
+    position: absolute;
+    bottom: -25px;
+    right: 0;
+    font-size: 12px;
+    font-style: italic;
+    color: #333;
+    font-weight: 300;
+}
+
+blockquote cite:before {
+    content: "-- "
+}
+
+/* Images */
+.overflow-image {
+    margin-top: -65px;
+}
+
+/* Links */
+a {
+    color: #b85252;
+    word-wrap: break-word;
+
+    -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -o-transition: color 0.1s ease-in, background 0.1s ease-in;
+    transition: color 0.1s ease-in, background 0.1s ease-in;
+}
+
+a:hover,
+a:focus {
+    background: #b85252;
+    color: white;
+    text-decoration: none;
+    outline: 0;
+}
+
+
+
+.button,
+button {
+    display: inline-block;
+    padding: 15px 35px;
+    border-radius: 40px;
+    border: 0;
+
+    font-family: "微软雅黑";
+    line-height: normal;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    max-width: 100%;
+
+    background: #b85252;
+    box-shadow: 0 2px 1px 1px #933232, inset 0 2px 1px 1px rgba(0, 0, 0, 0);
+
+    -webkit-transition: box-shadow 0.2s ease-in;
+    -moz-transition: box-shadow 0.2s ease-in;
+    -ms-transition: box-shadow 0.2s ease-in;
+    -o-transition: box-shadow 0.2s ease-in;
+    transition: box-shadow 0.2s ease-in;
+}
+
+.button:hover,
+button:hover {
+    background: #b85252;
+}
+
+.button:active,
+button:hover {
+    box-shadow: 0 0 0 0 #933232, inset 0 2px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button:before,
+button:before {
+    margin-right: 10px;
+}
+
+.big-icon {
+    position: relative;
+    padding-left: 15%;
+}
+
+.big-icon:before {
+    position: absolute;
+    left: 0;
+    font-size: 28px;
+}
+
+.bigger-icon {
+    display: block;
+    text-align: center;
+    color: #d1dee1;
+    font-size: 82px;
+    margin-bottom: 30px;
+}
+
+.is-white,
+.is-white p,
+.is-white strong {
+    color: white;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.csstransitions .animated {
+    visibility: hidden;
+}
+
+.csstransitions .animated.visible {
+    visibility: visible;
+}
+
+.no-js .animated {
+    visibility: visible;
+}
+
+.csstransitions span.animated {
+    display: inline-block;
+}
+
+/* Callout */
+.callout {
+    text-align: center;
+    padding: 45px 20px;
+    background: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+    line-height: normal;
+    margin-bottom: 55px;
+}
+
+.callout-box:before {
+    display: inline-block;
+    font-size: 48px;
+    color: #555;
+
+    -webkit-transition: all 0.3s cubic-bezier(0.712, 0.0376, 0.392, 1);
+    -moz-transition: all 0.3s cubic-bezier(0.712, 0.0376, 0.392, 1);
+    -o-transition: all 0.3s cubic-bezier(0.712, 0.0376, 0.392, 1);
+    -ms-transition: all 0.3s cubic-bezier(0.712, 0.0376, 0.392, 1);
+    transition: all 0.3s cubic-bezier(0.712, 0.0376, 0.392, 1);
+}
+
+.callout-box:hover:before {
+    display: inline-block;
+    font-size: 48px;
+    color: #222;
+}
+
+.callout-box .box-title {
+    font-size: 21px;
+    font-weight: 500;
+    color: #222;
+    text-transform: uppercase;
+    letter-spacing: 1;
+    margin-bottom: 18px;
+    line-height: 28px;
+}
+
+.callout-box p {
+    margin: 0;
+}
+
+.note {
+    position: relative;
+    top: -3px;
+    display: inline-block;
+    font-family: "微软雅黑";
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    background: #b85252;
+    line-height: normal;
+    text-transform: uppercase;
+    border-radius: 20px;
+    padding: 10px 18px;
+}
+
+/* Isotope Filters */
+.filters {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+.filters li {
+    display: inline-block;
+}
+
+.filters li a {
+    display: block;
+    border: none;
+    color: #777;
+    text-transform: uppercase;
+    font-size: 24px;
+    margin: 0 15px 20px 15px;
+}
+
+.filters li .selected,
+.filters li a:hover {
+    background: none;
+    color: #b85252;
+}
+
+/* Form Input fields etc */
+form {
+    margin-bottom: 30px;
+}
+
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+    width: 100%;
+    height: 60px;
+
+    font-family: "微软雅黑";
+    font-size: 16px;
+    color: #333;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    margin-bottom: 25px;
+
+    box-shadow: none;
+    border-radius: 0;
+    border: 1px solid #ddd;
+    padding: 0 45px 0 15px;
+}
+
+textarea {
+    min-height: 200px;
+    padding-top: 18px;
+}
+
+::-webkit-input-placeholder {
+    font-size: 14px;
+    color: #aaa;
+    font-weight: 300;
+    font-style: italic;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    font-size: 14px;
+    color: #aaa;
+    font-weight: 300;
+    font-style: italic;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    font-size: 14px;
+    color: #aaa;
+    font-weight: 300;
+    font-style: italic;
+}
+
+:-ms-input-placeholder {
+    font-size: 14px;
+    color: #aaa;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.input-field .placeholder {
+    font-size: 14px;
+    color: #aaa;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.input-field {
+    position: relative;
+    margin: 0;
+}
+
+.input-field:before {
+    position: absolute;
+    right: 22px;
+    top: 22px;
+    color: #aaa;
+}
+
+input.error,
+textarea.error {
+    border: 1px solid #ec3a33;
+}
+
+input.valid,
+textarea.valid {
+    border: 1px solid #7ec0f0;
+}
+
+label.error {
+    position: absolute;
+    bottom: 2px;
+    color: #c57c7e;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly] {
+    background: #b85252;
+    box-shadow: none;
+    color: white;
+
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+    filter: alpha(opacity=70);
+    -moz-opacity: 0.7;
+    -khtml-opacity: 0.7;
+    opacity: 0.7;
+}
+
+.submit-button {
+    margin-left: 15px;
+}
+
+.spinner-holder {
+    position: relative;
+    top: 8px;
+}
+
+.feedback-text {
+    margin-bottom: 0;
+    line-height: 24px;
+    font-size: 13px;
+    font-style: italic;
+}
+
+/* Map Canvas */
+.map-canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.map-canvas img {
+    max-width: none;
+}
+
+/* Page Wrapper */
+.wrap {
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    background-color: white;
+    overflow: hidden;
+
+    -webkit-backface-visibility: hidden;
+
+    -webkit-overflow-scrolling: touch;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+a:hover{background:none; color:#666}
+.bigTitle{ font-size:20px}
+.leftText{text-align:center; padding-top:15% }
+.leftText li{ line-height:40px; height:40px}
+.leftText img{ width:80%;margin-top:2%;}
+.leftText .fill{font-size:18px; font-weight:400}
+.leftText .invitation{font-size:26px; color:#F00;font-weight:400}
+.buttonStyle{margin:10px 0; text-align:center;}
+.buttonStyle div{ margin-top:10px}
+.picPhone{text-align:center}
+p {line-height: 28px; margin-bottom: 25px;}
+.infolist img{float:left; width:60px}
+.infolist ul{ width:96%; margin-left:10px}
+.infolist li{ border-bottom:#CCC solid 1px; clear:both; height-min:100px; padding-top:20px;}
+.infolist p{ margin-left:70px; font-size:14px}
+footer{text-align:center;}
+footer p{font-weight:800; font-size:14px;margin:10px 0; color:#999}
+.bgcolor{ background:#fafafa}
+@media only screen and (max-width: 479px) {
+.leftText{text-align:center; padding-top:10px;}
+.buttonStyle img {width:80%;}
+.picPhone img { width:80%}
+.infolist p{padding-right:8px}
+}
+   @media only screen and (min-width: 480px) and (max-width: 767px) {
+.leftText{text-align:center; padding-top:10px;}
+.buttonStyle img {width:80%; margin-left:20%}
+.picPhone img { width:280px}
+	  
+}
+@media only screen and (max-width: 767px){
+    [class*="span"], .uneditable-input[class*="span"], .row-fluid [class*="span"]{
+        width:50%;float:left;
+    }
+}  

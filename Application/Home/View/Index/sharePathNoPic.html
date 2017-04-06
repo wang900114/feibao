@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=yes">
+	<title></title>
+<style type="text/css">
+html {
+	-ms-text-size-adjust:100%;
+	-webkit-text-size-adjust:100%
+}
+body {
+	line-height:1.6;
+	font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: normal 100%;
+}
+body,h1,h2,h3,h4,h5,p,ul,ol,dl,dd,fieldset,textarea {
+	margin:0;
+	max-width: 100%;
+}
+fieldset,legend,textarea,input,button {
+	padding:0
+}
+button,input,select,textarea {
+	font-family:inherit;
+	font-size:100%;
+	margin:0;
+	*font-family:"Helvetica Neue",Helvetica,Arial,sans-serif
+}
+ul,ol {
+	padding-left:0;
+	list-style-type:none;
+	list-style-position:inside
+}
+a img,fieldset {
+	border:0
+}
+a {
+	text-decoration:none;
+	color:#607fa6;
+}
+img, object {
+	width:auto;
+	max-width: 100%;
+	-ms-interpolation-mode: bicubic;
+}
+small {
+	font-size: 0.875em;
+}
+.banner img {
+	margin-bottom: -8px;
+}
+.content p {
+	padding: 0 15px;
+}
+.info {
+	color: #333;
+	display: inline-block;
+	padding: 0.5em 1em;
+	font-size: 0.9em;
+	width: auto;
+}
+.info small {
+	float: left;
+}
+.info .date {
+	float: right;
+	position: absolute;
+	right: 1em;
+}
+.wy a {
+    background: -moz-linear-gradient(center top , #e5e5e7, #b4b5b9) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 1px solid #b5b5b5;
+    border-radius: 5px;
+    color: #4d4d4d;
+    display: inline-block;
+    font-size: 14px;
+    padding: 2px 15px;
+    text-shadow: 0 1px 0 #fff;
+}
+</style>
+</head>
+<body>
+	<div class="wrap">	
+        <div class="info">
+                <div class="date">{$info.time|timeFormat}</div>
+        </div>
+		<div class="content"><br>
+        <p >{$info.content}</p>
+        <br>
+		<br>
+        <div class="wy" style="text-align:center">
+                    <!--结束感谢区图片-->
+                    <img width="195" height="79" src="__PUBLIC__/Images/founnews.jpg">
+                    <br>
+                    <!--下载App地址   二维码地址-->
+                    <a href="http://app.feibaokeji.com/logo2.html">免费下载</a>
+                    <!--<a href="http://dev.feibaokeji.com/index.php/Home/Invitation/index">免费下载</a>-->
+                </div></div>
+		
+	</div>
+</body>
+</html>

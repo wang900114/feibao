@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="320px" height="568px" viewBox="0 0 320 568" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3 (11970) - http://www.bohemiancoding.com/sketch -->
+    <title>背景测试</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#C38D70" offset="0%"></stop>
+            <stop stop-color="#A16767" offset="31.9638534%"></stop>
+            <stop stop-color="#AE6257" offset="70.8007812%"></stop>
+            <stop stop-color="#8B5442" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#C38D70" offset="0%"></stop>
+            <stop stop-color="#7267A1" offset="31.9638534%"></stop>
+            <stop stop-color="#4785B4" offset="70.8007812%"></stop>
+            <stop stop-color="#8B5442" offset="100%"></stop>
+        </linearGradient>
+        <radialGradient cx="52.1740723%" cy="48.7958022%" fx="52.1740723%" fy="48.7958022%" r="68.3656623%" id="radialGradient-3">
+            <stop stop-color="#E47ECA" offset="0%"></stop>
+            <stop stop-color="#AE5798" offset="43.1680485%"></stop>
+            <stop stop-color="#9D355F" offset="100%"></stop>
+        </radialGradient>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetInner1"></feOffset>
+            <feGaussianBlur stdDeviation="75" in="shadowOffsetInner1" result="shadowBlurInner1"></feGaussianBlur>
+            <feComposite in="shadowBlurInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.35 0" in="shadowInnerInner1" type="matrix" result="shadowMatrixInner1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+                <feMergeNode in="shadowMatrixInner1"></feMergeNode>
+            </feMerge>
+        </filter>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-5">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetInner1"></feOffset>
+            <feGaussianBlur stdDeviation="71.5" in="shadowOffsetInner1" result="shadowBlurInner1"></feGaussianBlur>
+            <feComposite in="shadowBlurInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.102400362 0" in="shadowInnerInner1" type="matrix" result="shadowMatrixInner1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+                <feMergeNode in="shadowMatrixInner1"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="背景测试" sketch:type="MSArtboardGroup">
+            <rect id="Rectangle-1" fill="url(#linearGradient-1)" sketch:type="MSShapeGroup" x="0" y="0" width="320" height="568"></rect>
+            <rect id="Rectangle-1-Copy" fill="url(#linearGradient-2)" sketch:type="MSShapeGroup" x="0" y="0" width="320" height="568"></rect>
+            <rect id="Rectangle-1-Copy-2" opacity="0.369169776" fill="url(#radialGradient-3)" filter="url(#filter-4)" sketch:type="MSShapeGroup" x="0" y="0" width="320" height="568"></rect>
+            <rect id="Rectangle-1-Copy-3" fill-opacity="0" fill="#000000" filter="url(#filter-5)" sketch:type="MSShapeGroup" x="0" y="0" width="320" height="568"></rect>
+        </g>
+    </g>
+</svg>

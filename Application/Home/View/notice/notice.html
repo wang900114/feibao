@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<title>系统公告</title>
+</head>
+<style type="text/css">
+h5 {
+	padding:0;
+	font-size:16px;
+	color:#6d7381;
+	margin:15px auto;
+	text-align:center;
+	width:200px;
+	line-height:25px;
+	font-weight:100;
+}
+.con {
+	color:#6d7381;
+	padding-left:10px;
+	padding-right:10px;
+	margin:0;
+	font-size: 16px;
+	line-height: 25px
+}
+.con p {
+	padding:0;
+	color:#6d7381;
+	font-size: 16px;
+	line-height: 25px;
+	margin:0;
+}
+</style>
+<body>
+<h5 id="notice-tit"></h5>
+<div class="con">
+  <p class="pcon"></p>
+</div>
+</body>
+</html>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/base64.js"></script>
+<script type="text/javascript" src="/Public/js/common.js"></script>
+<script type="text/javascript">
+$(function(){
+		
+	var DataId=getQueryString("dataId");  //会员ID
+	var mobile_platform = getQueryString("mobile_platform");
+	var agreement = getQueryString("agreement"); 
+
+	$.ajax({
+			type:"POST",
+			dataType:"json",
+			url:host+"/index.php/API_3.2/Personal/getMessage",
+			data:{
+				dataId:DataId,//用户ID
+				mobile_platform:mobile_platform,
+				agreement:agreement
+			},
+			success:function(data){
+				var b =new Base64();  
+				
+				  str = b.decode(data.content);   //解密 
+       
+				//公告标题
+				$("#notice-tit").text(data.title);
+				//公告内容
+				$(".pcon").html(str);
+				//$(".con").html($(this).text())
+				$(".pcon").html($(".pcon").text())
+			
+			}
+	})
+
+})
+
+
+</script>

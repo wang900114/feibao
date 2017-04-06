@@ -1,0 +1,777 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>广告详情</title>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/touchwipe.js"></script>
+<link rel="stylesheet" href="http://daneden.github.io/animate.css/animate.min.css"/>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-font-smoothing: antialiased;
+}
+
+.clear {
+    clear: both;
+}
+
+/*body{font-size:62.5%;}
+        红包style*/
+
+.oDiva {
+    width: 70px;
+    height: 70px;
+}
+
+.box {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 0.8em;
+    color: #fff;
+    display: none;
+    opacity: 0;
+}
+
+.box img {
+    width: 70px;
+    height: 70px;
+}
+
+#val {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background-color: #f0eff5;
+    display: none;
+}
+
+#box1 {
+    width: 100%;
+    position: absolute;
+}
+
+/*#box1 .pageBox{width:100%;overflow: hidden;}*/
+#box1 .pageBox {
+    overflow: hidden;
+}
+
+/*详情*/
+.toBottomRight {
+    background: url("images/newBj.jpg") no-repeat center center;
+    background-size: 100% auto;
+    display: block;
+}
+
+#pagelast {
+    width: 100%;
+    height: 100%;
+}
+
+#pagelast h2 {
+    font-size: 18px;
+    height: 48px;
+    line-height: 48px;
+    font-weight: normal;
+    color: #fff;
+    overflow: hidden;
+    padding-top: 13px;
+}
+
+#pagelast div div {
+    font-size: 14px;
+}
+
+#stopTime #last {
+    color: #ff6c42
+}
+
+#pagelast #tag {
+    padding-bottom: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 10px;
+}
+
+#pagelast #tag a {
+    margin-right: 5px;
+    padding: 3px 8px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    color: #FFF;
+    text-decoration: none;
+    font-size: 0.8em;
+    position: relative;
+    z-index: 30;
+}
+
+#pagelast div i {
+    font-style: normal;
+    font-size: 14px;
+}
+
+.listOne, .listTwo, #collect, .listUser, .telephone {
+    padding-left: 15px;
+    color: #fff;
+    padding-right: 15px;
+}
+
+.listOne h2 {
+    text-align: center;
+}
+
+#sendTime {
+    padding: 15px 0px 7px
+}
+
+#stopTime {
+    padding: 0px 0px 15px
+}
+
+#stopTime, #website {
+}
+
+#collect {
+    padding-top: 0px;
+    padding-bottom: 10px;
+    font-size: 14px;
+}
+
+.listThr div {
+    padding: 15px 5px 15px 25px;
+    line-height: 24px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.listThr {
+    margin-top: 10px;
+}
+
+/*商品、优惠*/
+.main {
+    z-index: 1;
+    position: fixed;
+    left: 4%;
+    top: 63%;
+}
+
+.sp, .yh {
+    border-radius: 1.5em;
+    color: white;
+    width: 3em;
+    height: 3em;
+    text-align: center;
+    line-height: 3em;
+    font-size: 1.2em;
+    text-decoration: none;
+    display: none;
+    position: absolute;
+}
+
+.sp {
+    background: rgba(153, 51, 0, 0.5);
+}
+
+.yh {
+    background: rgba(209, 56, 10, 0.5);
+}
+
+.djq {
+    background: rgba(77, 137, 201, 0.5);
+    border-radius: 2.0em;
+    color: white;
+    width: 3.5em;
+    height: 3.5em;
+    text-align: center;
+    line-height: 3.5em;
+    font-size: 1.2em;
+    position: absolute;
+    text-decoration: none;
+    display: none;
+}
+
+.offImg {
+    background: url("images/offImg.png") no-repeat;
+    background-size: 90px;
+    width: 90px;
+    height: 90px;
+    text-align: center;
+    text-decoration: none;
+    position: absolute;
+    top: 10%;
+    right: 10px;
+    z-index: 30;
+    display: none;
+}
+
+.redboxGg {
+    position: absolute;
+    z-index: 9999;
+    left: 100;
+    visibility: visible;
+    top: 100px;
+    cursor: pointer;
+}
+
+.redboxGg img {
+    width: 70px;
+
+    height: 70px;
+}
+
+.boxAdd {
+    height: 30px;
+    line-height: 30px;
+    background: #ff5271;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 18px !important;
+    color: #fff;
+  
+ 
+    float: left;
+    padding-left: 3px;
+    padding-right:3px;
+	width:88px;min-width:88px;
+	
+
+    /* width:90px;min-width:90px;*/
+	
+}
+
+.conDiv {
+    position: absolute;
+    width: 240px;
+    height: 30px;
+    left: 50%;
+    top: 50%;
+    margin-left: -120px;
+    margin-top: -15px;
+    display: none;
+}
+
+.conDiv h2 {
+    font-size: 24px;
+    color: #b6bac5;
+    margin: 0;
+    padding: 0;
+    font-weight: 100;
+    text-align: center;
+}
+
+#website a {
+    color: orangered;
+    text-decoration: none;
+}
+
+/*新增的star*/
+#website, .Qcode {
+    padding: 15px;
+    color: #fff;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+#addressB {
+    color: #fff;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px;
+}
+
+#address {
+    position: relative;
+}
+
+#address .addressl {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    width: 74px;
+    height: 100%;
+}
+
+#address .addressr {
+    position: absolute;
+    z-index: 0;
+    left: 0;
+}
+
+#address .addressCon {
+    margin-left: 65px;
+    line-height: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.listUser {
+    line-height: 48px;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.listUser .user {
+    font-size: 16px;
+}
+
+.listUser img {
+    margin-right: 10px;
+    width: 30px;
+    vertical-align: middle;
+    border-radius: 15px;
+}
+
+.telephone {
+    display: none;
+}
+
+.telephoneB {
+    padding: 5px 0px;
+}
+
+.telephoneB .telephonel {
+    float: left;
+    display: inline;
+    padding-top: 5px;
+}
+
+.telephoneB .telephoner {
+    float: right;
+    display: inline;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    padding: 3px 12px;
+    font-size: 14px !important;
+}
+
+.Qcode .QImg {
+    background: url("images/icon.png") no-repeat right center;
+    padding-right: 10px;
+}
+
+#website .wImg {
+    background: url("images/icon.png") no-repeat right center;
+    padding-right: 10px;
+}
+
+.voucherA {
+    height: 80px;
+    position: relative;
+    margin: 0 10px 13px;
+    display: none;
+}
+
+.voucherA .voucherAl {
+    width: 200px;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    height: 80px;
+}
+
+.voucherA .voucherAl .leftB {
+    background: #fff;
+    border-radius: 5px 0 0 5px;
+    width: 10px;
+    height: 80px;
+    float: left;
+    display: inline-table
+}
+
+.voucherA .voucherAl .leftM {
+    background: #fff;
+    width: 66px;
+    height: 80px;
+    float: left;
+    display: inline-table;
+}
+
+.voucherA .voucherAl .leftM .Pone {
+    text-align: center;
+    font-size: 20px !important;
+    font-weight: bold;
+    padding-top: 23px;
+}
+
+.voucherA .voucherAl .leftM .Ptwo {
+    padding-left: 5px;
+    padding-top: 2px;
+}
+
+.voucherA .voucherAr {
+    width: 100%;
+    position: absolute;
+    left: 0;
+}
+
+.voucherA .voucherAr .voucherAC {
+    margin-left: 91px;
+    height: 80px;
+    background: #fff;
+    border-radius: 0 5px 5px 0;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.voucherA .voucherAr .voucherAC .dl {
+    margin: 0;
+    padding: 0;
+    line-height: 26px;
+}
+
+.voucherA .voucherAr .voucherAC dl dt {
+    font-weight: bold;
+    width: 97%;
+    padding-left: 5px;
+    line-height: 20px;
+    height: 25px;
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-top: 14px;
+}
+
+.voucherA .voucherAr .voucherAC dl dd {
+    background: url(images/icon01.jpg) no-repeat left center;
+    line-height: 17px;
+    font-size: 11px;
+    padding-left: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.voucherA .midImg {
+    background: url("images/1.png") no-repeat center center;
+    display: inline-table;
+    float: left;
+    width: 15px;
+    height: 80px;
+}
+
+@media (max-width: 320px) {
+    #pagelast h2 {
+        line-height: 30px;
+        height: 30px;
+        padding-top: 18px;
+    }
+
+    #pagelast #tag {
+        padding-top: 13px;
+        padding-bottom: 10px;
+    }
+
+    .listUser {
+        line-height: 37px;
+    }
+
+    .voucher {
+        margin-bottom: 6px;
+    }
+
+    #collect {
+        padding-bottom: 7px;
+    }
+
+    #website, .Qcode, #addressB {
+        padding: 10px 15px;
+    }
+
+    .telephoneB {
+        padding-top: 10px;
+    }
+
+    .voucherA .voucherAr .voucherAC dl dt {
+        padding-left: 5px;
+    }
+
+    .offImg {
+        background-size: 75px;
+        width: 75px;
+        height: 75px;
+        right: 10px;
+    }
+}
+
+/*新增的end*/
+
+.animated {
+    -webkit-animation-duration: 0.7s;
+    animation-duration: 0.7s;
+    -webkit-animation-fill-mode: backwards;
+    animation-fill-mode: backwards;
+}
+
+@-webkit-keyframes bounceIn {
+    0%, 100%, 20%, 40%, 60%, 80% {
+        -webkit-animation-timing-function: cubic-bezier(0.215, .61, .355, 1);
+        animation-timing-function: cubic-bezier(0.215, .61, .355, 1)
+    }
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3)
+    }
+    20% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1);
+        transform: scale3d(1.1, 1.1, 1.1)
+    }
+    40% {
+        -webkit-transform: scale3d(.9, .9, .9);
+        transform: scale3d(.9, .9, .9)
+    }
+    60% {
+        opacity: 1;
+        -webkit-transform: scale3d(1.03, 1.03, 1.03);
+        transform: scale3d(1.03, 1.03, 1.03)
+    }
+    80% {
+        -webkit-transform: scale3d(.97, .97, .97);
+        transform: scale3d(.97, .97, .97)
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1)
+    }
+}
+
+@keyframes bounceIn {
+    0%, 100%, 20%, 40%, 60%, 80% {
+        -webkit-animation-timing-function: cubic-bezier(0.215, .61, .355, 1);
+        animation-timing-function: cubic-bezier(0.215, .61, .355, 1)
+    }
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3)
+    }
+    20% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1);
+        transform: scale3d(1.1, 1.1, 1.1)
+    }
+    40% {
+        -webkit-transform: scale3d(.9, .9, .9);
+        transform: scale3d(.9, .9, .9)
+    }
+    60% {
+        opacity: 1;
+        -webkit-transform: scale3d(1.03, 1.03, 1.03);
+        transform: scale3d(1.03, 1.03, 1.03)
+    }
+    80% {
+        -webkit-transform: scale3d(.97, .97, .97);
+        transform: scale3d(.97, .97, .97)
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1)
+    }
+}
+
+.bounceIn {
+    -webkit-animation-name: bounceIn;
+    animation-name: bounceIn
+}
+
+@-webkit-keyframes bounceInDown {
+    0%, 100%, 60%, 75%, 90% {
+        -webkit-animation-timing-function: cubic-bezier(0.215, .61, .355, 1);
+        animation-timing-function: cubic-bezier(0.215, .61, .355, 1)
+    }
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -3000px, 0);
+        transform: translate3d(0, -3000px, 0)
+    }
+    60% {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 25px, 0);
+        transform: translate3d(0, 25px, 0)
+    }
+    75% {
+        -webkit-transform: translate3d(0, -10px, 0);
+        transform: translate3d(0, -10px, 0)
+    }
+    90% {
+        -webkit-transform: translate3d(0, 5px, 0);
+        transform: translate3d(0, 5px, 0)
+    }
+    100% {
+        -webkit-transform: none;
+        transform: none
+    }
+}
+
+@-webkit-keyframes flash {
+    0% {
+        opacity: 1
+    }
+    100% {
+        opacity: 0
+    }
+}
+
+@keyframes flash {
+    0% {
+        opacity: 1
+    }
+    100% {
+        opacity: 0
+    }
+}
+
+.flash {
+    -webkit-animation-name: flash;
+    animation-name: flash
+}
+
+.animatedOut {
+    -webkit-animation-duration: 0.8s;
+    animation-duration:0.8s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    animation-delay:0.8s;
+    -webkit-animation-delay:0.8s;
+}
+</style>
+</head>
+
+<body>
+<section class="offImg"></section>
+<div class="conDiv">
+    <h2 class="small"></h2>
+</div>
+<div id="FlAD" class="redboxGg"><img src="images/redenvelopes.png"></div>
+<div id="main" class="main"><a class="sp" href="shangpin?">商品</a> <a class="yh" href="youhui?">优惠</a> <a class="djq"
+                                                                                                         href="daijinquan?">代金券</a>
+</div>
+<div id="val">
+    <div id="box1">
+        <div class="pageBox" id="lastDiv"> <span id="pagelast" class="item item_3 toBottomRight">
+      <div class="listOne">
+          <h2 id="title">标题</h2>
+
+          <div id="tag"><a href="tag?type=1&typeId=2">tag1</a><a href="tag?type=1&typeId=3">tag2</a><a
+              href="tag?type=1&typeId=4">tag3</a><a href="tag?type=1&typeId=5">tag4</a></div>
+      </div>
+      <div class="listUser">
+          <div class="user"><img src="images/head1.png"><i> 嘟嘟你饿了</i></div>
+      </div>
+      <div class="voucherA">
+          <div class="voucherAl">
+              <div class="leftB"></div>
+              <div class="leftM">
+                  <p class="Pone">100</p>
+
+                  <p class="Ptwo">￥</p>
+              </div>
+              <div class="midImg"></div>
+              <div class="clear"></div>
+          </div>
+          <div class="voucherAr">
+              <div class="voucherAC">
+                  <dl>
+                      <dt id="Qcontent">满500元即可使</dt>
+                      <dd id="QshopName">正品阿迪折扣店</dd>
+                      <dd id="Qdata">2015-05-25至2015-04-01</dd>
+                  </dl>
+              </div>
+          </div>
+      </div>
+      <div class="listTwo">
+          <div id="stopTime">截止时间: <i id="time">2015-4-09</i><i id="last">(剩余约90天)</i></div>
+      </div>
+      <div id="collect">收藏人气: 232,456人</div>
+      <div class="Qcode">
+          <div class="QImg">二维码</div>
+      </div>
+      <div id="website">
+          <div class="wImg">网页链接</div>
+      </div>
+      <div id="addressB">
+          <div id="address">
+              <div class="addressl">实店地址:</div>
+              <div class="addressr">
+                  <div class="addressCon"></div>
+              </div>
+          </div>
+      </div>
+      <div class="telephone">
+          <div class="telephoneB">
+              <div class="telephonel">服务电话：1232111</div>
+              <div class="telephoner">拨打电话</div>
+              <div class="clear"></div>
+          </div>
+      </div>
+      </span></div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="js/base64.js"></script>
+<script type="text/javascript" src="/Public/js/common3.2.3.js"></script>
+<script>
+
+    var url = host + "/index.php/API_ANDROID_3.2.3/Posters/changeDataId";
+
+    request();
+
+    function request() {
+        var mxlHttp = null;
+        if (window.ActiveXObject) {//如果是IE
+            mxlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+
+        } else if (window.XMLHttpRequest) {
+            mxlHttp = new XMLHttpRequest(); //实例化一个xmlHttpReg
+        }
+        if (mxlHttp != null) {
+            mxlHttp.onreadystatechange = function () {
+                if (mxlHttp.readyState == 4) {
+                    if (mxlHttp.status >= 200 || mxlHttp.status == 304) {
+                        if (mxlHttp.responseText) {
+
+                            dataInfo(mxlHttp.responseText);
+                        }
+                    } else {
+                        console.log("请求出错");
+                    }
+                }
+            };
+
+            mxlHttp.open("get", url, true);
+            mxlHttp.send(null);
+        }
+
+
+    }
+
+    function dataInfo(data) {
+        var list = document.getElementById('list');
+        var info = JSON.parse(data),
+            len = info.content;
+        for (var i = 0; i < len.length; i++) {
+            var n = len[i];
+            var oli = document.createElement("li");
+            oli.innerText = n.con;
+            list.appendChild(oli)
+        }
+
+    }
+
+</script>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <title>他的店铺信息</title>
+</head>
+<link href="shop.css"  rel=stylesheet type="text/css">
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/touchwipe.js"></script>
+<script src="js/base64.js"></script>
+<script type="text/javascript" src="/Public/js/common3.2.3.js"></script>
+
+<body>
+<div class="shopload">
+<section id="coverDiv">
+    <!--  Start ================================ -->
+  <div class="ui-gallery ui-slider">
+    <div class="scroller"  >
+     
+
+
+    </div>
+    <div class="icons">
+
+    </div>
+</div>
+        <!--  End ================================ -->
+</section>
+<div  id="covh">
+    <header class="shopimg">
+        <ul>
+        </ul>
+        <div style="clear:both;"></div>
+    </header>
+    
+    <section class="conh1">
+        <h1>店铺资料</h1>
+    <span>
+         <div><em>店铺名称:</em> <i name="shopName"></i></div>
+         <div class="con-tel"><em>店铺电话:</em><i name="phone"></i> <a href="" class="redTel">拨打电话</a></div>
+    </span>
+        <i  class="Tline"></i>
+        <div><em class="Icon01" >网店地址:</em><a name="NetAddress" ></a></div>
+        <div ><em class="aIcon">实店地址:</em><i name="Address"></i> </div>
+        <h1>店铺简介</h1>
+        <p class="con-sh">
+            
+            
+        </p>
+    </section>
+</div>
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+var Version = getQueryString("version");      //版本号
+var UserId = getQueryString("userId");        //会员ID
+var Phone = getQueryString("phone");          //手机号
+var FriendId = getQueryString("friendId");    //朋友ID
+
+$.ajax({
+    type: "POST",
+    dataType: "json",
+    url: "" + host + "/index.php/API_3.2/Friend/getShopInfo/",
+    data: {
+        version: Version,      //版本号
+        userId: UserId,        //用户ID
+        phone: Phone,          //手机号
+        friendId: FriendId     //朋友ID
+
+    },
+    success: function (data) {
+		
+        if (data.status == "1") {
+	    $(".shopload").css("display","block")
+            strInfo = data.info
+            var b = new Base64();
+            str = b.decode(strInfo);//解密
+            //alert(str.title);
+            //str.replace(/"/g, ";")
+            //$("i[name=shopName]").html(str.title);
+
+
+            str = $.parseJSON(str);   //字符串转JSON
+
+
+            $("i[name=shopName]").html(str.title);   //店铺标题
+            $("i[name=phone]").html(str.telphone);  //店铺电话
+            $(".redTel").attr("href", "tel:" + str.telphone); //拨打电话的地方
+
+           // $("a[name=NetAddress]").attr("href", str.netAddress);
+            $("a[name=NetAddress]").html(str.netAddress);//店铺网址
+			//$("a[name=NetAddress]").html($("a[name=NetAddress]").text());//店铺网址
+
+			
+
+            $("i[name=Address]").html(str.address);//店铺地址
+            $("p[class=con-sh]").html(str.content);//店铺内容
+
+            var Image1 = str.image1;
+            var Image2 = str.image2;
+            var Image3 = str.image3;
+            var Image4 = str.image4;
+            var Image5 = str.image5;
+
+            var imgArr = [];
+            if (!str.image1 == "") {
+                imgArr.push(str.image1);
+
+            }
+            if (!str.image2 == "") {
+                imgArr.push(str.image2);
+
+            }
+            if (!str.image3 == "") {
+                imgArr.push(str.image3);
+
+            }
+            if (!str.image4 == "") {
+                imgArr.push(str.image4)
+            }
+            if (!str.image5 == "") {
+                imgArr.push(str.image5);
+
+            }
+            var strLi = "";
+            var divLi = '';
+            for (var i = 0; i < imgArr.length; i++) {
+                strLi += "<li><img src='"+mphost+"/" +imgArr[i] + "'></li>";
+                divLi += "<div><img src='"+mphost+"/" + imgArr[i] + "'></div>";
+            }
+            $(".shopimg ul").html(strLi);
+            $(".scroller").html(divLi);
+
+
+            //点击显示
+            $(".shopimg ul li").on({
+                click: function () {
+                    $("#coverDiv").css("visibility", "visible");
+                    $("#covh").addClass("covh");
+                }
+
+            })
+            //点击图片隐藏
+            $("#coverDiv").click(function () {
+                $(this).css("visibility", "hidden");
+                $("#covh").removeClass("covh");
+            })
+
+            //计算图片显示的尺寸
+            var liImgW = $(".shopimg ul li").width();
+            $(".shopimg ul li").css({
+                height: liImgW + "px",
+                overflow: "hidden",
+            })
+
+
+            //计算大图的尺寸位置
+            //var covImg=$("div[class=tempWrap] ul li img");
+
+            //轮播图
+            var winW = $(window).width();
+            var warW = $(".ui-slider").width(winW);
+
+            var NumDiv = $(".scroller div").length;
+            for (var i = 0; i < NumDiv; i++) {
+                $(".icons").append("<i></i>");
+
+            }
+            $(".icons i").eq(0).addClass("current");
+            var scrollerW = $(".scroller").width(winW * NumDiv);
+            $(".scroller div").width(winW);
+
+            var current = 0;
+
+            function scrollA(indexN) {
+                $(".scroller").animate({
+                    left: -(indexN * winW) + "px",
+                }, 800);
+
+                $(".icons i").eq(indexN).addClass("current").siblings().removeClass("current");
+
+            }
+
+            $(".scroller").touchwipe({
+                min_move_x: 2, //横向灵敏度
+                wipeLeft: function () {
+                    //alert("22")
+                    var w1 = Math.abs($(".scroller").position().left);
+                    //var winW=$(window).width();
+                    var currentW = Math.round(w1 / winW);
+                    currentW++;
+                    //console.log(currentW);
+                    if (currentW >= NumDiv) {
+
+                    } else {
+                        scrollA(currentW);
+                    }
+
+                },
+
+                wipeRight: function () {
+                    var w2 = Math.abs($(".scroller").position().left);
+                    var currentW2 = Math.round(w2 / winW);
+                    currentW2--;
+                    if (currentW2 > -1) {
+                        scrollA(currentW2);
+                    }
+
+
+                }
+
+            })
+            /*录播end*/
+
+
+        } else {
+            window.location.href = "/Application/Home/View/shop/noshop.html";
+        }
+    }
+})
+
+
+
+
+
+
+
+
+
+
+</script>

@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="Cache-Control" content="max-age=0">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>我是商家</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/page.css">
+</head>
+	<body>
+		<div class="seller-box" id="seller-box" style="margin-bottom: 60px;">
+			<p class="nav" id="nav-btn"><span class="cur">最新</span><span>历史</span></p>
+			<ul class="box">
+				<li class="new-box" id="new-box">
+					<div class="list">
+						<a href="not_order_detail.html">
+							<h3>北京市朝阳中路嘉泰国际大厦<span class="label cr">未处理</span></h3>
+							<ul class="order-mig clearfix">
+								<li><img src="images/1.jpg" alt=""></li>
+								<li><img src="images/1.jpg" alt=""></li>
+								<li><img src="images/1.jpg" alt=""></li>
+								<li><img src="images/1.jpg" alt=""></li>
+							</ul>
+						</a>
+						<div class="order-btn clearfix"><p class="cl"><a class="delivery-btn" href="send_user.html">安排派送</a></p><strong class="cr">￥<em>123</em></strong></div>
+					</div>
+					<div class="list">
+						<a href="not_order_detail.html">
+							<h3>北京市朝阳中路嘉泰国际大厦<span class="label cr">未处理</span></h3>
+							<ul class="order-mig clearfix">
+								<li><img src="images/1.jpg" alt=""></li>
+								<li><img src="images/1.jpg" alt=""></li>
+								<li><img src="images/1.jpg" alt=""></li>
+								<li><img src="images/1.jpg" alt=""></li>
+							</ul>
+						</a>
+						<div class="order-btn clearfix"><p class="cl"><a class="delivery-btn" href="send_user.html">安排派送</a></p><strong class="cr">￥<em>123</em></strong></div>
+					</div>
+					<div class="list">
+						<a href="not_order_detail.html">
+							<h3>北京市朝阳中路嘉泰国际大厦<span class="label cr">未处理</span></h3>
+							<ul class="order-mig clearfix">
+								<li><img src="images/1.jpg" alt=""></li>
+								<li><img src="images/1.jpg" alt=""></li>
+								<li><img src="images/1.jpg" alt=""></li>
+								<li><img src="images/1.jpg" alt=""></li>
+							</ul>
+						</a>
+						<div class="order-btn clearfix"><p class="cl"><a class="delivery-btn" href="send_user.html">安排派送</a></p><strong class="cr">￥<em>123</em></strong></div>
+					</div>
+					<div class="list">
+						<a href="not_order_detail.html">
+							<h3>北京市朝阳中路嘉泰国际大厦<span class="label cr">未处理</span></h3>
+							<ul class="order-mig clearfix">
+								<li><img src="images/1.jpg" alt=""></li>
+								<li><img src="images/1.jpg" alt=""></li>
+								<li><img src="images/1.jpg" alt=""></li>
+								<li><img src="images/1.jpg" alt=""></li>
+							</ul>
+						</a>
+						<div class="order-btn clearfix"><p class="cl"><a class="delivery-btn" href="send_user.html">安排派送</a></p><strong class="cr">￥<em>123</em></strong></div>
+					</div>
+				</li>
+				<li class="old-box" id="old-box" style="display: none;">
+					<div class="list">
+						<a href="not_order_detail.html">
+							<h3>北京市朝阳中路嘉泰国际大厦<span class="label label-type cr">已完成</span></h3>
+							<ul class="order-mig clearfix">
+								<li><img src="images/1.jpg" alt=""></li>
+								<li><img src="images/1.jpg" alt=""></li>
+								<li><img src="images/1.jpg" alt=""></li>
+								<li><img src="images/1.jpg" alt=""></li>
+							</ul>
+						</a>
+						<div class="order-btn clearfix"><p class="cl">王强派送</p><strong class="cr">￥<em>123</em></strong></div>
+					</div>
+				</li>
+			</ul>
+			<footer class="wxBottom">
+			    <section class="wrap">
+			        <a  class="hover" href="my_order.html">订单</a>
+			        <a href="stock.html">库存</a>
+			        <a href="">小店</a>
+			    </section>
+			</footer>
+		</div>
+	</body>
+</html>
+<script src="js/jquery-1.9.0.min.js"></script>
+<script>
+$(function(){
+	function Tab(id){
+	  this.oParent = $(id);
+	  this.btn = this.oParent.find('.nav span');
+	  this.aDiv = this.oParent.find('.box>li');
+	  this.iNow = 0;
+	}
+	
+	Tab.prototype.init = function(){
+	  var This = this;
+	  for(var i=0; i<this.btn.length;i++){
+	    this.btn[i].index = i;
+	    this.btn[i].onclick=function(){
+	      This.change(this);
+	    }
+	  }	
+	}
+	
+	Tab.prototype.change = function(obj){
+	  for(var i=0; i<this.btn.length;i++){
+	    this.btn[i].className="";
+	    this.aDiv[i].style.display="none";
+	  }
+	  console.log(this.aDiv.length)
+	  obj.className="cur";
+	  this.aDiv[obj.index].style.display="block";
+	}
+	var t1 = new Tab("#seller-box");
+	t1.init();
+})
+
+</script>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>飞报app应用</title>
+ <link rel="stylesheet" href=" __PUBLIC__/Css/bootstrap.min.css">
+ <link rel="stylesheet" href="__PUBLIC__/Css/down.css">
+</head>
+<style type="text/css">
+ ul,li{list-style:none; padding:0; margin:0}
+#popweixin{display:none; width:100%}
+#popweixin_ad{display:none; width:100%}
+/*#warp{display:none}*/
+</style>
+<script type="text/javascript">
+ window.onload=function(){
+     document.getElementById("an_down").href="http://download.feibaokeji.com/apk/feibao.apk?"+new Date().getTime();
+ //window.document.getElementById("popweixin").style.display = "block";
+ //window.document.getElementById("popweixin").style.display = "block";
+ 	 var ua = navigator.userAgent.toLowerCase();
+     var andown = document.getElementById("an_down");
+
+	if(/micromessenger/.test(ua)){
+		 if (/iphone|ipod/.test(ua)) {
+			//window.document.getElementById("popweixin").style.display = "block";
+			//window.location.href = 'https://itunes.apple.com/cn/app/fei-bao/id737395949?mt=8';
+			window.location.href = "http://a.app.qq.com/o/simple.jsp?pkgname=com.feibaokeji.feibao";
+		}else{
+            var browser = {
+                versions: function() {
+                    var u = navigator.userAgent, app = navigator.appVersion;
+                    return {
+                        trident: u.indexOf('Trident') > -1,
+                        presto: u.indexOf('Presto') > -1, 
+                        webKit: u.indexOf('AppleWebKit') > -1,
+                        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1,
+                        mobile: !!u.match(/AppleWebKit.*Mobile.*/) || !!u.match(/AppleWebKit/),
+                        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+                        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+                        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1,
+                        iPad: u.indexOf('iPad') > -1,
+                        webApp: u.indexOf('Safari') == -1
+                    };
+                }(),
+                language: (navigator.browserLanguage || navigator.language).toLowerCase()
+            }
+
+            if (browser.versions.ios || browser.versions.iPhone || browser.versions.iPad) {
+                //window.location.href="https://itunes.apple.com/cn/app/fei-bao/id737395949?mt=8";
+				var iosdown = document.getElementById("ios_down");
+				iosdown.onclick = function(){
+					/*window.document.getElementById("popweixin_ad").style.display = "block";
+					document.getElementById("warp").style.display = "none";	*/
+					window.location.href = "http://a.app.qq.com/o/simple.jsp?pkgname=com.feibaokeji.feibao";
+				}
+                andown.onclick = function(){
+                    window.document.getElementById("popweixin").style.display = "block";
+                    document.getElementById("warp").style.display = "none";
+                    return false;
+                }
+				//window.document.getElementById("popweixin").style.display = "block";
+            }else if (browser.versions.android) {
+
+				andown.onclick = function(){
+					window.document.getElementById("popweixin_ad").style.display = "block";
+					document.getElementById("warp").style.display = "none";
+                    return false;
+				}
+				//window.location="http://m.app.so.com/detail/index?pname=com.feibaokeji.feibao&id=2059367";
+
+            }else{
+				window.location=" {$Think.const.WEBURL}/index.php/Home/Invitation/index/invitId/{$uid}";
+			}
+	}
+
+	}else{
+		//window.document.getElementById("warp").style.display = "block";
+		//window.location="http://www.feibaokeji.com/app/index2.php";
+		 if (/iphone|ipod/.test(ua)) {
+			//window.document.getElementById("popweixin").style.display = "block";
+			window.location.href = 'https://itunes.apple.com/cn/app/fei-bao/id737395949?mt=8';
+		}else{
+			window.location.href="http://download.feibaokeji.com/index.html";
+		}
+
+	}
+ }
+
+ </script>
+
+<body>
+
+  <img src='http://download.feibaokeji.com/images/wechat_appstore.jpg' id="popweixin"/>
+  <img src='http://download.feibaokeji.com/images/wechat_appstore_ad.jpg' id="popweixin_ad"/>
+<div class="warp" id="warp">
+<section  class="section-wrap">
+    <div class="container">
+        <!-- START TABS -->
+        <div class="tab-content about-tabs">
+            <!-- START TAB -->
+            <div class="tab-pane  active">
+                <h1  class="paragraph-title bigTitle ">飞报 看广告赚钱</h1>
+                <div class="row-fluid bgcolor" >
+                    <div class="span<if condition="$uid gt 0">6 <else/>12</if> picPhone">
+                    <img src="__PUBLIC__/Images/down/picPhone.png">
+                    </div>
+
+                    <div class="span6 leftText" >
+                    <h1>飞报APP</h1>
+                        <!-- <div class="span6"> -->
+                        <!-- <a id="ios_down" href="https://itunes.apple.com/cn/app/fei-bao/id737395949?mt=8" target="_blank"><img src="__PUBLIC__/Images/down/ios.png"></a>
+                         <a id="ios_down" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.feibaokeji.feibao"><img src="__PUBLIC__/Images/down/ios.png"></a>-->
+                         <a id="ios_down" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.feibaokeji.feibao" target="_blank"><img src="__PUBLIC__/Images/down/ios.png"></a>
+                        <!-- </div>
+                        <div class="span6"> -->
+                         <a id="an_down" href="http://app.download.feibaokeji.com/apk/feibao3.2.5.apk" target="_blank"><img src="__PUBLIC__/Images/down/Adroid.png"></a>
+                       <!--  </div> -->
+                      <if condition="$uid gt 0">
+                          <ul>
+                               <li class="fill">入驻时填写邀请码</li>
+                               <li  class="invitation">{$uid}</li>
+                               <li  class="fill"><font color="#FF0000">2</font> 元立刻到手！</li>
+                         </ul>
+                     </if>
+                    </div>
+
+                </div>
+                <!-- <div class="row-fluid buttonStyle">
+                    <div class="span6">
+                           <a href="https://itunes.apple.com/cn/app/fei-bao/id737395949?mt=8" target="_blank"><img src="__PUBLIC__/Images/down/ios.png"></a>
+                    </div>
+                    <div class="span6">
+                     <a href="http://www.feibaokeji.com/FeiBao.apk" target="_blank"><img src="__PUBLIC__/Images/down/Adroid.png"></a>
+                    </div>
+                </div> -->
+
+                <div class="row-fluid infolist">
+                    <ul>
+                        <li>
+                            <img src="__PUBLIC__/Images/down/head2.png">
+                            <p>问：飞报凭什么看广告赚钱？<br>
+                                别的APP都是自己收商家的广告费，飞报是把广告费直接送给看广告的您。
+                            </p>
+                        </li>
+                        <li>
+                            <img src="__PUBLIC__/Images/down/head1.png">
+                            <p>问：商家凭什么在飞报做广告？<br>
+                              飞报在中国首创“定向、定点、定位”地理定向精准投放广告技术，实现目标客户在哪里广告就投那里，精准投放商家自然喜欢。
+                            </p>
+                        </li><li>
+                            <img src="__PUBLIC__/Images/down/head3.png">
+                            <p>问：凭什么说飞报广告最有效？<br>
+                                哈佛大学《哈佛大学评论》14年5月发表权威报告“坐标定位，广告最有效”。
+                            </p>
+                        </li>
+                        <li class="lastLi">
+                            <img src="__PUBLIC__/Images/down/head4.png">
+                            <p>问：飞报凭什么受欢迎？<br>
+                                《福布斯》调查报告“没人喜欢看广告，无论是PC还是移动端，除非有奖赏”飞报看广告赚钱，用户喜欢是必然。
+                            </p>
+
+                            <p>
+                            	<a href="http://www.feibaokeji.com" target="_blank">想了解更多请点击看官网 >></a>
+                            </p>
+                        </li>
+                     </ul>
+                </div>
+
+            </div>
+         </div>
+      </div>
+ </section>
+    <footer>
+       <p>北京飞报云创科技有限公司</p>
+    </footer>
+</div>
+</body>
+</html>

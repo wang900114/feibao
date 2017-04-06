@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>海报详情</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<!-- Link Swiper's CSS -->
+
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- Demo styles -->
+<style>
+
+html, body {
+position: relative;
+height: 100%;
+}
+body {
+background: #eee;
+font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+font-size: 14px;
+color:#000;
+margin: 0;
+padding: 0;
+}
+.swiper-container {
+width: 100%;
+height: 100%;
+}
+.swiper-slide {
+text-align: center;
+font-size: 18px;
+background: #fff;
+/* Center slide text vertically */
+display: -webkit-box;
+display: -ms-flexbox;
+display: -webkit-flex;
+display: flex;
+-webkit-box-pack: center;
+-ms-flex-pack: center;
+-webkit-justify-content: center;
+justify-content: center;
+-webkit-box-align: center;
+-ms-flex-align: center;
+-webkit-align-items: center;
+align-items: center;
+}
+.swiper-container-v {
+background: #eee;
+}
+
+/*漂浮开始*/
+
+*{margin:0;padding:0}
+		/*#poster_img{position:relative;}*/
+		.main{position:fixed;width:100%; z-index:9999;}
+		.box{position: absolute;width: 50px;height: 50px;background:#ff5271; border-radius:10px;line-height:20px;text-align:center;font-size:0.8em;padding-top:10px; color:#fff;}
+		
+/*漂浮END*/
+/*页面上的样式*/
+.hb-inforTop{ height:75%;}
+.hb-informin{ height:25%; text-align:center; margin-top:5px;}
+.hb-informin h2,.hb-informin h3,{ padding:0; margin:0; text-align:center;}
+
+.hb-informin h2{ font-size:14px; color:#999999; line-height:296%;}
+.hb-informin h3{ font-size:22px; color:#7b99ae; }
+.hb-inforbottom{padding-bottom:10px; background:#3d3d3d; width:100%; }
+.hb-inforbottom h2{ color:#fff; font-size:14px; line-height:52px; padding:0; margin:0; text-align:left; padding-left:15px; }
+.hb-inforbottom a{ background:#ff5271; color:#fff; font-size:12px; display:block; line-height:25px; text-align:center; width:73px; float:left; margin-right:10px; cursor:pointer;}
+.hb-icon{ margin-left:4%;}
+.line{ border-bottom:1px solid #202020; margin:0 auto; line-height:1px; overflow:hidden; font-size:0; margin-top:14px; margin-bottom:10px; width:95%; }
+.hb-inforbottom span{ display:block; color:#999999; line-height:20px; margin-left:15px; font-size:14px;}
+.countdown{ padding-left:62px; font-size:14px;}
+.Collect{ color:#ff5271 !important;}
+.Position{ padding-right:30px; color:#7b99ae !important;}
+
+</style>
+</head>
+<link rel="stylesheet" href="css/idangerous.swiper.css">
+<body>
+  
+  
+  
+ 
+	<div id="main" class="main">
+		<div id="box" class="box">积分<br/>红包</div>
+	</div>
+<!--漂浮END-->
+ <section class="hb-inforTop"> 
+<!-- Swiper -->
+<div class="swiper-container"  style="background:#ccc;">
+
+<!-- Add Pagination -->
+</div>
+</section>
+<section class="hb-informin">
+	<h2>一个冬季的温暖拥抱</h2>
+    <h3>
+        每个女孩都应做到两点：<br>
+
+        有品位且光芒四射
+    </h3>
+    <h2>在乎你的感受   所以才用心表达</h2>
+
+</section>
+
+<section class="hb-inforbottom">
+      <h2>每个女孩都应做到两点：有品位且光芒四射</h2>
+      <div class="hb-icon">
+             <a>服装鞋帽</a> <a>女性</a> <a>鞋帽</a>
+             <div style="clear:both;"></div>
+      </div>
+      <div class="line"> </div>
+    
+      <span>发布时间：2015-2-21  10：22</span>
+      <span>截止时间：2015-2-21  10：22</span>
+      <span class="countdown">（剩余约90天20小时）</span>
+      
+      <div class="line"></div>
+      <span class='Collect'>  收藏人气：232,444人</span>
+      <div class="line"></div>
+      <span class="Position"> 实店位置：北京市朝阳区东四环中路延静里中街3号院</span>
+</section>
+
+<!-- Swiper JS -->
+<script src="js/swiper.js"></script>
+
+<!-- Initialize Swiper -->
+
+
+<script>
+	var main = document.getElementById("main");
+	var box = document.getElementById("box");
+	$('#main').css({'height':$(window).height()});
+	box.style.left = parseInt(Math.random()*($(window).width()-$("#box").width()-10))+"px";
+	box.style.top = parseInt(Math.random()*($(window).height()-$("#box").height()-10))+"px";
+	//alert(Math.random())
+	var t1 = null;
+	var speedx = 1;
+	var speedy = 1;
+	var maxWidth = main.clientWidth-box.offsetWidth;
+	var maxHeight = main.clientHeight-box.offsetHeight;
+	t1 = setInterval(move,60);
+	function move(){
+		if ((box.offsetLeft>=maxWidth)||(box.offsetLeft<0)) {
+			speedx = -speedx;
+		};
+		if ((box.offsetTop>=maxHeight)||(box.offsetTop<0)) {
+			speedy = -speedy;
+		};
+		box.style.left = box.offsetLeft+speedx+"px";
+		box.style.top = box.offsetTop+speedy+"px";
+	}
+	$('#box').one('click',function(){
+		clearInterval(t1);
+		$('#box').css({'width':'80px','height':'30px'}).html("+50积分").delay(500).animate({'opacity':0});
+		
+	})
+</script>
+</body>
+</html>

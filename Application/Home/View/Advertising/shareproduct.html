@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>详情</title>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <link href="/Application/Home/View/Advertising/css/global.css?timeStamp=2" rel="stylesheet" />
+    <script src="/Application/Home/View/Advertising/js/hammer.min.js?timeStamp=1"></script>
+    <script src="/Application/Home/View/Advertising/js/jquery.min.js?timeStamp=1"></script>
+    <script src="/Application/Home/View/Advertising/js/utils.js?timeStamp=9"></script>
+    <script src="/Application/Home/View/Advertising/js/services.js?timeStamp=2"></script>
+</head>
+<body class="serviceDetails">
+    <div class="topImg">
+        <img data-bind="image" class="bigImg" />
+        <img style="width:6.4rem" class="borderBottom" src="/Application/Home/View/Advertising/images/icons/jczz.png" />
+    </div>
+    <div class="list">
+        <div class="item">
+            <header>
+                <div>
+                    <i></i>
+                    <span data-bind="addTime"></span>
+                </div>
+                <h2 data-bind="title"></h2>
+            </header>
+            <footer>
+                <span class="left"><img src="/Application/Home/View/Advertising/images/icons/sp_1.png" /><p>商品</p></span>
+                <div class="placeholder"></div>
+                <span><span>单价:</span><span data-bind="price" class="price">137.0</span><span class="price">元</span></span>
+            </footer>
+        </div>
+        <div class="content">
+            <header><i></i><h2>内容介绍</h2></header>
+            <div data-bind="content" class="body">
+                <!--<img src="/Application/Home/View/Advertising/images/u3946.jpg" />
+                <p>
+                    同样的单品穿在不同人身上、搭配不一样的单品，总会带来不同时尚FEEL。高领毛衣，冬日里最为常见的时尚单品，也是衣橱里、街头上出镜率最高的百搭神器。瑟瑟冷风中还在寻求那股暖流？让高领毛衣为你保暖同时也增添更多自信，情绪高昂的去享受女性的神奇魅力吧。
+                </p>-->
+            </div>
+            <footer>
+                <div class="placeholder"></div>
+                <span data-bind="addTime">15.11.13 10:22</span>
+            </footer>
+        </div>
+    </div>
+    <div class="feibao-adv" style="margin-bottom:1rem">
+        <img style="width: 1rem;height: 1rem" src="/Application/Home/View/Advertising/images/icons/icon_bg.png" alt="">
+        <span>免费在飞报发布营销信息、活动新闻<br />请登录电脑：http://mp.feibaokeji.com<br />城市合作加盟电话：400-6520458</span>
+
+    </div>
+    <div style="z-index: 100;display:-webkit-box;display:-webkit-flex;display:flex;-webkit-box-align:center;-webkit-box-align:center;-webkit-align-items:center;align-items:center;-webkit-box-pack:center;height:1rem;background:#fff;padding:0 .2rem;position: fixed;bottom: 0;left: 0;right: 0;">
+        <p style="font-size:.26rem;color:#5C6167;">飞报 专注于消费者与商家的互动分享</p><div class="placeholder"></div><img id="opendown" style="height:.6rem;width:1.5rem;" src="/Application/Home/View/Advertising/images/icons/down.png">
+    </div>
+    <script type="text/javascript">
+        window.onresize = function () {
+            document.querySelector("html").setAttribute("style", "font-size:" + document.body.clientWidth / 6.4 + "px");
+        };
+        document.querySelector("html").setAttribute("style", "font-size:" + document.body.clientWidth / 6.4 + "px");
+
+        var ViewModel = services.getzhDetail2({$info['dataId']}, 2);
+        ViewModel.content = decodeURIComponent(escape(window.atob(ViewModel.content)));
+        document.querySelectorAll("title")[0].innerHTML = ViewModel.title;
+        new Hammer(document.getElementById("opendown")).on("tap", function () {
+            window.location="http://www.feibaokeji.com/app/index.php";
+        });
+
+    </script>
+</body>
+</html>

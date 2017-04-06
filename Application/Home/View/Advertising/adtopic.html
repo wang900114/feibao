@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="css/global.css?timeStamp=2" rel="stylesheet" />
+    <script src="js/hammer.min.js?timeStamp=1"></script>
+    <script src="js/jquery.min.js?timeStamp=1"></script>
+    <script src="js/utils.js?timeStamp=9"></script>
+    <script src="js/services.js?timeStamp=2"></script>
+</head>
+<body class="adTopic">
+    <script type="text/javascript">
+        window.onresize = function () {
+            document.querySelector("html").setAttribute("style", "background:#F5F5F7;font-size:" + document.body.clientWidth / 6.4 + "px");
+        };
+        document.querySelector("html").setAttribute("style", "background:#F5F5F7;font-size:" + document.body.clientWidth / 6.4 + "px");
+    </script>
+    <!--<div style="position:absolute;z-index:3;" id="aaaaa"></div>-->
+    <div id="normal" style="display:none;">
+        <div class="header">
+            <div style="position:relative;font-size:0">
+                <img data-bind="bImage" class="bigImg" style="background:rgb(220,220,220);height:3.42rem;width:100%;" />
+                <!--<span class="bannerTitle">广告标题在此处，字数UI设定</span>-->
+            </div>
+            <div class="layoutCenter">
+                <div class="lineTitle"><img src="images/icons/专题作者.png" /><p data-bind="userName"></p></div>
+            </div>
+            <p data-bind="content" style="word-break: break-word;">
+
+            </p>
+            <div class="footer">
+                <span>第<span data-bind="periodNumber">523</span>期</span><div class="placeholder"></div><time data-bind="addTime">15.11.13 10:22</time>
+            </div>
+        </div>
+        <div class="list">
+            <div data-list="advInfo" class="item">
+                <div class="listH1_Left noBorder"><i style="background:#F4694C;"></i><h2 data-list-tap="%this%addetails?advId={%id%}" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;padding-right:.23rem" data-list-bind="recommendTitle">小编推荐内容标题</h2></div>
+                <div class="content">
+                    <p data-list-bind="recommendContent" class="textContent">同样的单品穿在不同人身上、搭配不一样的单品，总会带来不同时尚FEEL。高领毛衣，冬日里最为常见的时尚单品。</p>
+                    <img data-list-tap="%this%addetails?advId={%id%}" data-list-bind="image" class="bigImg" src="images/u3950.png" />
+                    <img data-list-tap="%this%userimage?id={%userId%}" data-list-bind="userImage" class="userPic" src="images/u3950.png" />
+                </div>
+                <h2 data-list-tap="%this%addetails?advId={%id%}" data-list-bind="title" style="display:block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">广告标题在此处，字数UI设定</h2>
+                <span data-list-bind="tag" class="tag">标签内容 / 标签内容 / 标签内容 / 标签内容</span>
+                <div class="footer">
+                    <span class="left">
+                        <img style="width:.3rem;height:.26rem;" src="images/icons/红心.png" /><span data-list-bind="interestTotal">14,325</span>
+                    </span>
+                    <div class="placeholder"></div>
+                    <span data-list-bind="addTime" class="right">
+                        15.11.13 10:22
+                    </span>
+                </div>
+            </div>
+            <div class="item music">
+                <div style="display:none;"><audio data-bind="music.music_url" src="js/music.mp3"></audio></div>
+                <div id="player" class="player">
+                    <img id="album" class="album" data-bind="music.image_url" style="height:2.05rem;width:2.05rem;border-radius:2.05rem;overflow:hidden;" />
+                    <img id="music_play" class="run" style="width:.64rem;height:.74rem;" src="images/icons/播放.png" />
+                    <img id="music_pause" class="pause" style="width:.64rem;height:.74rem;" src="images/icons/pause.png" />
+                </div>
+                <h1 data-bind="music.name">旅行</h1>
+                <h3 data-bind="music.author">许巍</h3>
+                <!--<div class="praise"><img style="width:.3rem;height:.26rem;" src="images/icons/红心.png" /><span data-bind="music.play_count">14,325</span></div>-->
+            </div>
+            <div class="page" style="display:none;"></div>
+        </div>
+        <div id="listClickLoading" class="listClickLoading">
+            点击加载更多
+        </div>
+        <div style="display:none;" class="listClickLoading">
+            没有数据了
+        </div>
+        <div id="bugmessage" style="position:fixed;top:0">
+
+        </div>
+        </div>
+        <div id="offshelf" style="font-size:.32rem;color:#99989D;display:none;position: absolute;left: 0;top: 0;bottom: 0;right: 0;-webkit-box-align:center;-webkit-align-items:center;align-items:center;" class="layoutCenter">
+            该专题已下架！
+        </div>
+        <script type="text/javascript">
+            var page = 0;
+
+            //是否停止播放
+            var isCease = true;
+            (function () {
+                var angle = 0;
+                var album = document.getElementById("album");
+                t = 0;
+                b = 0;
+                c = 360;
+                d = 200;
+                function rotate() {
+                    t++;
+                    var dushu = Tween.Linear(t, b, c, d);
+                    console.log(dushu);
+                    album.style.webkitTransform = "rotate(" + dushu + "deg)";
+                    album.style.transform = "rotate(" + dushu + "deg)";
+                    if (dushu > 360) {
+                        t = 0;
+                        b = 0;
+                        c = 360;
+                        d = 200;
+                    }
+                    if (!isCease) {
+                        requestAnimFrame(rotate);
+                    }
+                }
+                window.rotate = rotate;
+            })()
+            var myVideo = document.querySelectorAll('audio')[0];
+            function playPause() {
+                watchAudio();
+                //console.log(myVideo.paused);
+                if (myVideo.paused) {
+                    myVideo.play();
+                    $("#player").addClass("pause");
+                    $("#player").removeClass("play");
+                    isCease = false;
+                    rotate();
+                    //$("#album").css("animation-play-state", "running");
+                    //document.getElementById("bugmessage").innerHTML = $("#album").css("animation-play-state");
+                }
+                else {
+                    myVideo.pause();
+                    $("#player").addClass("play");
+                    $("#player").removeClass("pause");
+                    // $("#album").css("animation-play-state", "paused");
+                    isCease = true;
+                    //document.getElementById("bugmessage").innerHTML =window.getComputedStyle(document.getElementById("album"),null)["animation-play-state"];
+
+                }
+            }
+            //$('audio').on('ended', function () {
+            //    isCease = true;
+            //    $("#player").addClass("play");
+            //    $("#player").removeClass("pause");
+            //});
+            //myVideo.addEventListener("ended",function() {
+            //    isCease = true;
+            //    $("#player").addClass("play");
+            //    $("#player").removeClass("pause");
+            //});
+            var cc;
+            function watchAudio() {
+                var imyVideo = 0;
+                if (myVideo.duration == myVideo.currentTime) {
+                    myVideo.duration = 0;
+                }
+                cc = setInterval(function () {
+                    imyVideo++;
+                    if (myVideo.duration == myVideo.currentTime && imyVideo > 2) {
+                        //document.getElementById("cdddd").innerHTML = "ended停止"+i;
+                        isCease = true;
+                        $("#player").addClass("play");
+                        $("#player").removeClass("pause");
+                        clearInterval(cc);
+                    }
+                    else {
+                        //document.getElementById("cdddd").innerHTML = "ended没有停止"+i;
+                    }
+                }, 1000)
+            }
+
+            function stopplay() {
+                isCease = true;
+                myVideo.pause();
+                $("#player").addClass("play");
+                $("#player").removeClass("pause");
+                clearInterval(cc);
+            }
+            var ViewModel = services.getAdtopic(getQueryString("themeId"), 0);
+            if (ViewModel.status == "1") {
+                $("#offshelf").show();
+            }
+            else {
+                $("#normal").show();
+            }
+            ViewModel.content = b64_to_utf8(ViewModel.content);
+            for (var i = 0; i < ViewModel.advInfo.length; i++) {
+                ViewModel.advInfo[i].recommendContent = b64_to_utf8(ViewModel.advInfo[i].recommendContent);
+                ViewModel.advInfo[i].tag = "";
+                for (var i2 = 0; i2 < ViewModel.advInfo[i].category.length; i2++) {
+                    if (i2 != 0) {
+                        ViewModel.advInfo[i].tag += " / ";
+                    }
+                    //console.log(ViewModel.category[i]);
+                    ViewModel.advInfo[i].tag += ViewModel.advInfo[i].category[i2].name;
+                }
+            }
+            if (ViewModel.music == "") {
+                $(".music").hide();
+                $("#player").addClass("play");
+                $("#player").removeClass("pause");
+            }
+        </script>
+        <script type="text/javascript">
+            $(function () {
+                new Hammer(document.getElementById("player")).on("tap", function () {
+                    playPause();
+                });
+            });
+
+            new Hammer(document.getElementById("listClickLoading")).on("tap", function () {
+                var d = services.getAdtopic(getQueryString("themeId"), page + 1);
+                if (typeof d == "undefined") {
+                    $(".listClickLoading").eq(0).hide();
+                    $(".listClickLoading").eq(1).show();
+                }
+                else {
+                    for (var i = 0; i < d.advInfo.length; i++) {
+                        d.advInfo[i].recommendContent = b64_to_utf8(d.advInfo[i].recommendContent);
+                        d.advInfo[i].tag = "";
+                        for (var i2 = 0; i2 < d.advInfo[i].category.length; i2++) {
+                            if (i2 != 0) {
+                                d.advInfo[i].tag += " / ";
+                            }
+                            //console.log(ViewModel.category[i]);
+                            d.advInfo[i].tag += d.advInfo[i].category[i2].name;
+                        }
+                    }
+                    for (var i = 0; i < d.advInfo.length; i++) {
+                        var advInfo0 = d.advInfo[i];
+                        var add = '<div class="item page">' +
+            '<div class="listH1_Left noBorder"><i style="background:#F4694C;"></i><h2 data-list-tap="addetails?advId=' + advInfo0.id + '" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;padding-right:.23rem" data-list-bind="recommendTitle">' + advInfo0.recommendTitle + '</h2></div>' +
+            '<div class="content">' +
+            '<p data-list-bind="recommendContent" class="textContent">' + advInfo0.recommendContent + '</p>' +
+            '<img data-list-tap="addetails?advId=' + advInfo0.id + '" data-list-bind="image"  class="bigImg" src="' + advInfo0.image + '" />' +
+            '<img  data-list-tap="userimage?id=' + advInfo0.userId + '" data-list-bind="userImage" class="userPic" src="' + advInfo0.userImage + '" />' +
+            '</div>' +
+            '<h2 data-list-tap="addetails?advId=' + advInfo0.id + '" data-list-bind="title">' + advInfo0.title + '</h2>' +
+            '<span data-list-bind="tag" class="tag">' + advInfo0.tag + '</span>' +
+            '<div class="footer">' +
+            '<span class="left">' +
+            '<img style="width:.3rem;height:.26rem;" src="images/icons/红心.png" /><span data-list-bind="interestTotal">' + advInfo0.interestTotal + '</span> ' +
+            '</span>' +
+            '<div class="placeholder"></div>' +
+            '<span data-list-bind="addTime" class="right">' +
+            formatDate(advInfo0.addTime + "000") +
+            '</span>' +
+            '</div>' +
+            '</div>';
+                        $(".page").last().after(add);
+                        console.log(1);
+                    }
+                    var taps = document.querySelectorAll("[data-tap]");
+                    for (var i = 0; i < taps.length; i++) {
+                        var elThis = taps[i];
+                        new Hammer(elThis).on("tap", function () {
+                            window.location = this.getAttribute("data-tap");
+                        }.bind(elThis));
+                    };
+                    var taps = document.querySelectorAll("[data-list-tap]");
+                    for (var i = 0; i < taps.length; i++) {
+                        var elThis = taps[i];
+                        new Hammer(elThis).on("tap", function () {
+                            window.location = this.getAttribute("data-list-tap");
+                        }.bind(elThis));
+                    };
+                    page++;
+                }
+
+            });;
+
+
+            //function aaaa(aaa) {
+            //    document.getElementById("aaaaa").innerHTML = document.getElementById("aaaaa").innerHTML + aaa;
+            //}
+        </script>
+</body>
+
+</html>

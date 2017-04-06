@@ -1,0 +1,1114 @@
+<!doctype html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>广告详情</title>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/touchwipe.js"></script>
+    <style>
+* {
+	margin:0;
+	padding:0;
+	-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+	-webkit-font-smoothing: antialiased;
+}
+.clear {
+	clear: both;
+}
+/*body{font-size:62.5%;}
+        红包style*/
+
+
+        .oDiva {
+	width:70px;
+	height:70px;
+}
+.box {
+	position: absolute;
+	width: 70px;
+	height: 70px;
+	border-radius:10px;
+	line-height:20px;
+	text-align:center;
+	font-size:0.8em;
+	color:rgba(255, 255, 255, 0.75);
+	display:none;
+	opacity:0;
+}
+.box img {
+	width: 70px;
+	height: 70px;
+}
+#val {
+	width:100%;
+	overflow:hidden;
+	position:relative;
+	background-color:#f0eff5;
+	display:none;
+}
+#box1 {
+	width:100%;
+	position:absolute;
+}
+/*#box1 .pageBox{width:100%;overflow: hidden;}*/
+        #box1 .pageBox {
+	overflow: hidden;
+}
+/*详情*/
+ .toBottomRight {
+	background:#151729 url("images/newBj.png") no-repeat center center;
+	background-size:cover;
+	display: block;
+	height: 100%;
+	width: 100%;
+}
+#pagelast {
+	width: 100%;
+	height: 100%;
+}
+#pagelast h2 {
+	font-size:18px;
+	height:55px;
+	line-height:55px;
+	font-weight:normal;
+	color:rgba(255, 255, 255, 0.75);
+	overflow:hidden;
+	padding-top: 13px;
+}
+#pagelast div div {
+	font-size:14px;
+}
+#stopTime #last {
+	color:#ff6c42
+}
+#pagelast #tag {
+	padding-bottom: 10px;
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+	padding-top:10px;
+}
+#pagelast #tag a {
+	margin-right:5px;
+	padding:3px 8px;
+	border-radius:10px;
+	border:1px solid rgba(255, 255, 255, 0.2);
+	text-decoration:none;
+	color:rgba(255, 255, 255, 0.75);
+	text-decoration:none;
+	font-size:0.8em;
+	position:relative;
+	z-index:30;
+}
+#pagelast div i {
+	font-style:normal;
+	font-size:14px;
+}
+.listTwo, #collect, .listUser, .telephone {
+	padding-left:15px;
+	color:rgba(255, 255, 255, 0.75);
+	padding-right: 15px;
+}
+.listOne #tag{
+	padding-left:15px;
+	
+	}
+
+.listOne h2 {
+	text-align: center;
+}
+#sendTime {
+	padding:15px 0px 7px
+}
+#stopTime {
+	padding:5px 0px 15px
+}
+#stopTime, #website {
+}
+#collect {
+	padding-top: 0px;
+	padding-bottom: 10px;
+	font-size: 14px;
+}
+.listThr div {
+	padding:15px 5px 15px 25px;
+	line-height:24px;
+	word-wrap:break-word;
+	word-break:break-all;
+}
+.listThr {
+	margin-top:10px;
+}
+/*商品、优惠*/
+        .main {
+	z-index:1;
+	position:fixed;
+	left:4%;
+	top:63%;
+}
+.sp, .yh {
+	border-radius:1.5em;
+	color:white;
+	width:3em;
+	height:3em;
+	text-align:center;
+	line-height:3em;
+	font-size:1.2em;
+	text-decoration:none;
+	display:none;
+	position: absolute;
+}
+.sp {
+	background:rgba(153, 51, 0, 0.5);
+}
+.yh {
+	background:rgba(209, 56, 10, 0.5);
+}
+.djq {
+	background: rgba(77, 137, 201, 0.5);
+	border-radius:2.0em;
+	color:white;
+	width:3.5em;
+	height:3.5em;
+	text-align:center;
+	line-height:3.5em;
+	font-size:1.2em;
+	position:absolute;
+	text-decoration:none;
+	display:none;
+}
+.offImg {
+	background:url("images/offImg.png") no-repeat;
+	background-size: 90px;
+	width:90px;
+	height:90px;
+	text-align:center;
+	text-decoration: none;
+	position:absolute;
+	top:10%;
+	right:10px;
+	z-index:30;
+	display:none;
+}
+.redboxGg {
+	position:absolute;
+	z-index:9999;
+	left: 100;
+	visibility:hidden;
+	top: 100px;
+	cursor:pointer;
+}
+.redboxGg img {
+	width: 70px;
+	height: 70px;
+}
+.boxAdd {
+	height:30px;
+	line-height:30px;
+	background:#ff5271;
+	border-radius:10px;
+	text-align:center;
+	font-size:18px!important;
+	color:rgba(255, 255, 255, 0.75);
+	float:left;
+    padding-left: 3px;
+    padding-right:3px;
+	width:88px;min-width:88px;
+	
+}
+.conDiv {
+	position: absolute;
+	width: 240px;
+	height: 30px;
+	left: 50%;
+	top:50%;
+	margin-left: -120px;
+	margin-top:-15px;
+	display:none;
+}
+.conDiv h2 {
+	font-size: 24px;
+	color:rgba(255, 255, 255, 0.75);
+	margin:0;
+	padding:0;
+	font-weight: 100;
+	text-align: center;
+}
+#website a {
+	color:orangered;
+	text-decoration:none;
+}
+/*新增的star*/
+#website, .Qcode {
+	padding-bottom:15px;
+	padding-top:15px;
+	margin-left:15px;
+	
+	color:rgba(255, 255, 255, 0.75);
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+	cursor: pointer;
+}
+#addressB {
+	color:rgba(255, 255, 255, 0.75);
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+	margin-left:15px;
+	
+	padding-top:15px;
+	padding-bottom:15px;
+}
+#address {
+	position: relative;
+}
+#address .addressl {
+	position: absolute;
+	z-index: 1;
+	left: 0;
+	width: 74px;
+	height: 100%;
+}
+#address .addressr {
+	position: absolute;
+	z-index: 0;
+	left: 0;
+}
+#address .addressCon {
+	margin-left: 65px;
+	line-height: 18px;
+	overflow : hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	padding-right:15px;
+}
+.listUser {
+	line-height: 48px;
+	vertical-align: middle;
+	cursor: pointer;
+	margin-bottom: 5px;
+}
+.listUser .user {
+	font-size: 16px;
+}
+.listUser img {
+	margin-right: 10px;
+	width: 30px;
+	vertical-align: middle;
+	border-radius: 15px;
+}
+.telephone {
+	display: none;
+}
+.telephoneB {
+	padding:5px 0px;
+}
+.telephoneB .telephonel {
+	float: left;
+	display: inline;
+	padding-top: 5px;
+}
+.telephoneB .telephoner {
+	float: right;
+	display: inline;
+	border-radius: 5px;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	padding:3px 12px;
+	font-size: 14px!important;
+	
+}
+.Qcode .QImg {
+	background: url("images/icon.png") no-repeat 96% center;
+
+}
+#website .wImg {
+	background: url("images/icon.png") no-repeat 96% center;
+
+}
+.voucherA {
+	height:80px;
+	position: relative;
+	margin: 0 10px 13px;
+	display: none;
+}
+.voucherA .voucherAl {
+	width:200px;
+	position:absolute;
+	left:0;
+	z-index:1;
+	height:80px;
+}
+.voucherA .voucherAl .leftB {
+	background: #fff;
+	border-radius: 5px 0 0 5px;
+	width: 10px;
+	height: 80px;
+	float: left;
+	display: inline-table
+}
+.voucherA .voucherAl .leftM {
+	background: #fff;
+	width: 66px;
+	height: 80px;
+	float: left;
+	display: inline-table;
+}
+.voucherA .voucherAl .leftM .Pone {
+	text-align: center;
+	font-size: 20px !important;
+	font-weight: bold;
+	padding-top:23px;
+}
+.voucherA .voucherAl .leftM .Ptwo {
+	padding-left: 5px;
+	padding-top: 2px;
+}
+.voucherA .voucherAr {
+	width:100%;
+	
+	position:absolute;
+	left:0;
+}
+.voucherA .voucherAr .voucherAC {
+	margin-left:91px;
+	height:80px;
+	background: #fff;
+	border-radius: 0 5px 5px 0;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.voucherA .voucherAr .voucherAC .dl {
+	margin: 0;
+	padding: 0;
+	line-height: 26px;
+}
+.voucherA .voucherAr .voucherAC dl dt {
+	font-weight: bold;
+	width: 97%;
+	padding-left: 5px;
+	line-height:20px;
+	height: 25px;
+	font-size: 13px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding-top: 14px;
+}
+.voucherA .voucherAr .voucherAC dl dd {
+	background: url(images/icon01.jpg) no-repeat left center;
+	line-height: 17px;
+	font-size: 11px;
+	padding-left: 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.voucherA .midImg {
+	background:url("images/1.png") no-repeat center center;
+	display:inline-table;
+	float: left;
+	width:15px;
+	height: 80px;
+}
+ @media (max-width:320px) {
+ #pagelast h2 {
+line-height: 45px;
+height: 45px;
+padding-top: 22px;
+}
+ #pagelast #tag {
+padding-top:13px;
+padding-bottom: 10px;
+}
+ .listUser {
+line-height: 37px;
+}
+ .voucher {
+margin-bottom: 6px;
+}
+ #collect {
+padding-bottom: 7px;
+}
+ #website, .Qcode, #addressB {
+   /* padding:10px 15px;*/
+}
+ .telephoneB {
+padding-top: 10px;
+}
+ .voucherA .voucherAr .voucherAC dl dt {
+padding-left: 5px;
+}
+ .offImg {
+background-size: 75px;
+width:75px;
+height:75px;
+right:10px;
+}
+}
+/*新增的end */
+.animated {
+    -webkit-animation-duration: 0.7s;
+    animation-duration: 0.7s;
+    -webkit-animation-fill-mode: backwards;
+    animation-fill-mode: backwards;
+}
+
+@-webkit-keyframes bounceIn {
+    0%, 100%, 20%, 40%, 60%, 80% {
+        -webkit-animation-timing-function: cubic-bezier(0.215, .61, .355, 1);
+        animation-timing-function: cubic-bezier(0.215, .61, .355, 1)
+    }
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3)
+    }
+    20% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1);
+        transform: scale3d(1.1, 1.1, 1.1)
+    }
+    40% {
+        -webkit-transform: scale3d(.9, .9, .9);
+        transform: scale3d(.9, .9, .9)
+    }
+    60% {
+        opacity: 1;
+        -webkit-transform: scale3d(1.03, 1.03, 1.03);
+        transform: scale3d(1.03, 1.03, 1.03)
+    }
+    80% {
+        -webkit-transform: scale3d(.97, .97, .97);
+        transform: scale3d(.97, .97, .97)
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1)
+    }
+}
+
+@keyframes bounceIn {
+    0%, 100%, 20%, 40%, 60%, 80% {
+        -webkit-animation-timing-function: cubic-bezier(0.215, .61, .355, 1);
+        animation-timing-function: cubic-bezier(0.215, .61, .355, 1)
+    }
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3)
+    }
+    20% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1);
+        transform: scale3d(1.1, 1.1, 1.1)
+    }
+    40% {
+        -webkit-transform: scale3d(.9, .9, .9);
+        transform: scale3d(.9, .9, .9)
+    }
+    60% {
+        opacity: 1;
+        -webkit-transform: scale3d(1.03, 1.03, 1.03);
+        transform: scale3d(1.03, 1.03, 1.03)
+    }
+    80% {
+        -webkit-transform: scale3d(.97, .97, .97);
+        transform: scale3d(.97, .97, .97)
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1)
+    }
+}
+
+.bounceIn {
+    -webkit-animation-name: bounceIn;
+    animation-name: bounceIn
+}
+
+@-webkit-keyframes bounceInDown {
+    0%, 100%, 60%, 75%, 90% {
+        -webkit-animation-timing-function: cubic-bezier(0.215, .61, .355, 1);
+        animation-timing-function: cubic-bezier(0.215, .61, .355, 1)
+    }
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -3000px, 0);
+        transform: translate3d(0, -3000px, 0)
+    }
+    60% {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 25px, 0);
+        transform: translate3d(0, 25px, 0)
+    }
+    75% {
+        -webkit-transform: translate3d(0, -10px, 0);
+        transform: translate3d(0, -10px, 0)
+    }
+    90% {
+        -webkit-transform: translate3d(0, 5px, 0);
+        transform: translate3d(0, 5px, 0)
+    }
+    100% {
+        -webkit-transform: none;
+        transform: none
+    }
+}
+
+@-webkit-keyframes flash {
+    0% {
+        opacity: 1
+    }
+    100% {
+        opacity: 0
+    }
+}
+
+@keyframes flash {
+    0% {
+        opacity: 1
+    }
+    100% {
+        opacity: 0
+    }
+}
+
+.flash {
+    -webkit-animation-name: flash;
+    animation-name: flash
+}
+
+.animatedOut {
+    -webkit-animation-duration: 0.8s;
+    animation-duration:0.8s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    animation-delay:2s;
+    -webkit-animation-delay:2s;
+
+}
+
+</style>
+    </head>
+
+    <body>
+<section class="offImg"> </section>
+<div class="conDiv">
+      <h2 class="small"></h2>
+    </div>
+<div id="FlAD" class="redboxGg"> <img src="images/redenvelopes.png"> </div>
+<div id="main" class="main"> <a class="sp" href="shangpin?">商品</a> <a class="yh" href="youhui?">优惠</a> <a class="djq" href="daijinquan?">代金券</a> </div>
+<div id="val">
+      <div id="box1">
+    <div class="pageBox" id="lastDiv"> <span id="pagelast" class="item item_3 toBottomRight">
+      <div class="listOne">
+        <h2 id="title">标题</h2>
+        <div id="tag"><a href="tag?type=1&typeId=2">tag1</a><a href="tag?type=1&typeId=3">tag2</a><a
+                        href="tag?type=1&typeId=4">tag3</a><a href="tag?type=1&typeId=5">tag4</a></div>
+      </div>
+      
+      <div class="listUser">
+        <div class="user"><img src="images/head1.png"><i> 嘟嘟你饿了</i></div>
+      </div>
+      
+      <div class="voucherA">
+        <div class="voucherAl">
+          <div  class="leftB"></div>
+          <div  class="leftM">
+            <p class="Pone">100</p>
+            <p class="Ptwo">￥</p>
+          </div>
+          <div class="midImg"></div>
+          <div class="clear"></div>
+        </div>
+        <div class="voucherAr">
+          <div class="voucherAC">
+            <dl>
+              <dt id="Qcontent">满500元即可使</dt>
+              <dd id="QshopName">正品阿迪折扣店</dd>
+              <dd id="Qdata">2015-05-25至2015-04-01</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <div class="listTwo">
+        <div id="stopTime">截止时间: <i id="time">2015-4-09</i><i id="last">(剩余约90天)</i></div>
+      </div>
+      <div id="collect">收藏人气: 232,456人</div>
+      <div class="Qcode">
+        <div class="QImg">二维码</div>
+      </div>
+      <div id="website">
+        <div class="wImg">网页链接</div>
+      </div>
+      <div id="addressB">
+        <div id="address">
+          <div class="addressl">实店地址:</div>
+          <div class="addressr">
+            <div class="addressCon"> </div>
+          </div>
+        </div>
+      </div>
+      <div class="telephone">
+        <div class="telephoneB">
+          <div class="telephonel">服务电话：1232111</div>
+          <div class="telephoner">拨打电话</div>
+          <div class="clear"></div>
+        </div>
+      </div>
+      </span> </div>
+  </div>
+    </div>
+</body>
+    <script type="text/javascript" src="js/base64.js"></script>
+    <script type="text/javascript" src="/Public/js/common3.2.3.js"></script>
+    <script>
+var datainfotype = 1;
+$(function () {
+
+    //css/js动态加载
+    var dynamicLoading = {
+        css: function (path) {
+            if (!path || path.length === 0) {
+                throw new Error('argument "path" is required !');
+            }
+            var head = document.getElementsByTagName('head')[0];
+            var link = document.createElement('link');
+            link.href = path;
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            head.appendChild(link);
+        },
+        js: function (path) {
+            if (!path || path.length === 0) {
+                throw new Error('argument "path" is required !');
+            }
+            var head = document.getElementsByTagName('head')[0];
+            var script = document.createElement('script');
+            script.src = path;
+            script.type = 'text/javascript';
+            head.appendChild(script);
+        }
+    }
+
+
+    /*点击出积分值end*/
+    /*页面内容的的获取*/
+    /*获取url地址中指定参数的值*/
+
+   // var UserId = encodeURI(getQueryString("userId"));  //会员ID
+    var UserId = getQueryString("userId");  //会员ID
+    var Phone = getQueryString("phone");   //手机号
+    var DataId = getQueryString("dataId");  //广告ID
+    var MyLng = getQueryString("myLng");    //经度
+    var MyLat = getQueryString("myLat");  //纬度
+    var CityId = getQueryString("cityId");	//城市id
+    var Version = getQueryString("version");  //版本号
+    var NoteId = getQueryString("noteId"); //记录ID
+    var ForwardUserId = getQueryString("forwardUserId");//转发人会员id
+    var mobile_platform = getQueryString("mobile_platform");
+    var agreement = getQueryString("agreement");
+    var num = 0, p_size = 0;
+    var htmlJson, ss;
+
+    var NorY;
+    var t1 = null;
+    var start;
+    $.when(
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: ""+host+"/index.php/API_ANDROID_3.2.3/Posters/friendPosterDetail",
+            //url: host + "/index.php/API_ANDROID_3.2.3/Posters/friendPosterDetail",
+            data: {
+                version: Version,   //版本号
+                userId: UserId,     //用户ID
+                phone: Phone,       //手机号
+                dataId: DataId,     //广告ID
+                myLng: MyLng,       //经度
+                myLat: MyLat,       //纬度
+                cityId: CityId,     //城市id
+                noteId: NoteId,     //记录ID
+                forwardUserId: ForwardUserId,  //转发人会员id
+                mobile_platform: mobile_platform,
+                agreement: agreement
+            },
+            success: function (data) {
+                var oSt=data.status;
+                if (oSt == 1||oSt ==-230||oSt ==38||oSt ==39||oSt ==40) {
+                    $("#val").show();
+                    var c = new Base64();
+
+                    // var htmlCom=data.info.htmlData;
+                    if(data.info.htmlData!=""){
+                        htmlJson = jQuery.parseJSON(c.decode(data.info.htmlData));		//获取模板数据
+                        //加载模板
+                        num = htmlJson.modelNum;
+                        p_size = htmlJson.pageSize;
+                        for (var i = 0; i < htmlJson.pageSize; i++) {
+                            $('<div class="load"></div>').attr({"id": "lastEle" + i}).insertBefore($("#lastDiv")).addClass("pageBox").load("/ThemePhone3.2.3/theme" + htmlJson.modelNum + "/index.html #page" + htmlJson["page" + i].pageNum);
+                        }
+                        loadCont();		//加载相应的脚本与样式
+                    }
+
+                    // 判断红包是否接过
+                    NorY = data.info.isExpose;
+                    if (data.info.title) {
+                        $("#title").html(data.info.title);	//获取标题
+                    } else {
+                        $("#title").hide();
+                    }
+
+                    var firstDiv;
+                    if (data.info.address) {
+                        var addrssNum=data.info.address;
+                       $(".addressCon").html(addrssNum)	//获取实店地址
+
+                       // $(".addressCon").html("北京市朝阳区东四环中路延静里中街北京市朝阳区东四环中路延静里中街3魏县第一中学号院北京市朝阳区东四环中路延静里中街北京市朝阳区东四环中路延静里中街3魏县第一中学号院");
+
+                        firstDiv= $(".addressCon").height()-5;
+                        $(".telephone").css("margin-top",""+firstDiv+"px")
+
+                    } else {
+                        $("#address").hide();
+                        $("#addressB").css({
+                            "padding":"5px",
+                            "font-size":0
+                        });
+                    }
+
+                    //服务电话
+                    var wPhone=data.info.warnPhone;
+                    if(wPhone){
+                        $(".telephone").show().css("margin-top",""+firstDiv+"px");
+                        $(".telephonel").html("服务电话: "+wPhone);
+
+                        $(".telephone").click(function(){
+                            window.location.href="?servicePhone";
+                        })
+
+                    }
+                    //头像与你昵称
+                    $(".user i").html(data.info.userName);
+                    $(".user img").attr("src",data.info.userImage);
+
+
+                    //截止时间
+                    if (data.info.startTime && data.info.endTime) {
+                        
+                        start = new Date(data.info.startTime * 1000);
+
+                        var end = new Date(data.info.endTime * 1000);
+                        start = start.getFullYear() + "-" + (start.getMonth() + 1) + "-" + start.getDate();		//获取发布时间
+                        $("#stopTime #time").html(end.getFullYear() + "-" + (end.getMonth() + 1) + "-" + end.getDate());		//获取截止时间
+                    } else {
+                        //$("#sendTime #time").hide();
+                        $("#stopTime #time").hide();
+                    }
+
+
+
+
+                        var str = "";
+                        for (var i = 0; i < data.info.category.length; i++) {
+                            if( data.info.category[i].name){
+                                str += '<a href="tag?type=' + data.info.category[i].type + '&typeId=' + data.info.category[i].cid + '&title=' + c.encode(data.info.category[i].name) + '">' + data.info.category[i].name + '</a>';
+                            }
+
+                        }
+                        $("#tag").html(str);
+
+
+                    if (data.info.collectTotal == 0) {
+                        $("#collect").hide();
+                    } else {
+                        $("#collect").html("收藏人气: " + data.info.collectTotal + "人");		//获取收藏人气
+                    }
+
+                    datainfotype = data.info.type   //获取商品/优惠 判断红包点击之后出现的商品、优惠详情；
+
+                    if (datainfotype == 1) {		//判断是否是优惠商品
+                        $(".sp").show();
+
+                    }else if(datainfotype==2){
+                        $(".yh").show();
+
+                    }else if(datainfotype==3){
+
+                    }else if(datainfotype==4) {
+
+                        NorY=1;
+                        $(".djq").show();
+                        $(".voucherA").show();
+                        $(".listTwo").hide();
+                        $("#Qcontent").html(data.info.content);
+                        //$("#Qcontent").html("满500000即可使用使用用好");
+                        $("#QshopName").html(data.info.shopName);
+                        $(".Pone").html(data.info.give);
+
+                        var Qstart = new Date(data.info.voucherStartTime * 1000);
+                        var Qend = new Date(data.info.voucherendTime * 1000);
+                        var dataA = Qstart.getFullYear() + "-" + (Qstart.getMonth() + 1) + "-" + Qstart.getDate();		//获取发布时间
+                        var dataB = Qend.getFullYear() + "-" + (Qend.getMonth() + 1) + "-" + Qend.getDate();		//获取截止时间
+                        $("#Qdata").html(dataA+" 至 "+dataB);
+
+                        $(".voucherA").click(function(){
+                            window.location.href="daijinquan?";
+                        })
+
+                    }
+
+                    if (data.info.weburl) {
+
+                        $("#website").click(function(){
+                            window.location.href=data.info.weburl+"?shoplink";
+                        })
+                        //$("#website").html('网店链接:'+data.info.weburl);//获取网店链接
+                        //  $("#website .wImg").html('网店链接:<a target="_blank" href=#>' + data.info.weburl + '</a>');//获取网店链接
+                        // $("#website a").attr('href', data.info.weburl + "?shoplink");
+                    } else {
+                        $("#website").hide();   //暂做了隐藏
+
+                    }
+
+                    // 个人主页
+                    $(".listUser img").click(function(){
+                        window.location.href="homePage?";
+                    });
+                    //二维码
+                    $(".Qcode").click(function(){
+                        window.location.href="QRcode?"
+                    });
+
+                    if(oSt ==-230||oSt ==39||oSt ==40){
+						$(".Qcode,#website,.telephone").unbind("click");// 取消各种点击
+                        $(".offImg").show();//显示下已下架标
+                        NorY=1; //红包隐藏
+                   }else if(oSt==38&&datainfotype==4){//代金券广告，不在范围内和正常的一样， 只不过多了一个 不在范围内
+				    $(".offImg").css("backgroundImage","url('images/without.png')").show();
+                        NorY=1;//红色隐藏
+                    }else if(oSt==38&&datainfotype!==4){//不在范围 非代金券
+						$(".offImg").css("backgroundImage","url('images/without.png')").show();
+                        $(".Qcode,#website,.telephone").unbind("click");// 取消各种点击
+						 NorY=1;//红色隐藏
+                    }
+
+
+                } else if (data.status == 36 || data.status == -1) {
+                    $(".conDiv").show().find('h2').html(data.message);
+                }
+                /*else if (data.status == 39 || data.status == 40 || data.status == 38 || data.status == -230 || data.status == 36 || data.status == 33) {
+                 $(".conDiv").show().find('h2').html(data.message);
+                 }*/ else if (data.status == 35) {
+                    $(".conDiv").show().find('h2').html("账号在其它设备登录，已被迫下线！")
+
+                } else {
+                    $(".conDiv").show().find('h2').html(data.message);
+
+                }
+            }
+        })
+    ).done(function () {
+            //时间倒计时
+            var startTime = start;
+            //console.log(start);
+            var stopTime = $("#stopTime #time").html().split("-");
+            var start0 = startTime[0], start1 = startTime[1], start2 = startTime[2];
+            var stop0 = stopTime[0], stop1 = stopTime[1], stop2 = parseInt(stopTime[2]) + 1;
+            var day1 = new Date(start0, start1 - 1, start2).getTime();
+            var day2 = new Date(stop0, stop1 - 1, stop2).getTime();
+            var today = new Date();
+            var ms, dt;
+            ms = day2 - today;
+            dt = Math.ceil(ms / 1000 / 3600 / 24);
+            if (ms > 0) {
+                $("#last").html("(剩余约" + dt + "天)");
+            } else if (ms == 0) {
+                $("#last").html("(剩余约" + 1 + "天)");
+            } else {
+                $("#last").html("(已过期)");
+            }
+            //屏幕滚动
+            var scorllH=$(window).height();
+            $("#val,#box1 .pageBox").css({"height": $(window).height() + "px", "width": $(window).width() + "px"});
+            $("#box1").height($("#val").height() * 4);
+            var ss = $("#box1").position().top;
+            $("#val").touchwipe({
+                min_move_y: 30, //纵向灵敏度
+                wipeUp: function () {
+                    ss -= $("#val").height();
+                    picPos();
+
+                }, //向上滑动事件
+                wipeDown: function () {
+                    ss += $("#val").height();
+                    picPos();
+
+                }, //向下滑动事件
+                preventDefaultEvents: true //阻止默认事件
+            });
+
+            var oDivNum = Math.floor(Math.random() * (p_size + 1) + 1) - 1;
+            var Onew = $(".pageBox").height();
+            var oDivpic = oDivNum * Onew;
+            //alert(oDivNum)
+
+            if (NorY == 2) {
+                if (ss == 0 && oDivpic == 0) {
+                    $("#FlAD").css("visibility", "visible");
+                }
+
+            } else if (NorY == 1) {
+                $("#FlAD").css("visibility", "hidden");
+
+            }
+
+
+            function picPos() {
+                if (ss >= 0) {
+                    ss = 0;
+                }
+                if (ss <= -($("#box1 .pageBox").size() - 1) * $("#box1 .pageBox").height()) {
+                    ss = -($("#box1 .pageBox").size() - 1) * $("#box1 .pageBox").height();
+                }
+                $("#box1").animate({"top": ss})
+                if (NorY == 2) {
+                    if (ss == -oDivpic) {
+                        $("#FlAD").css("visibility", "visible");
+                    } else  {
+                        $("#FlAD").css("visibility", "hidden");
+                    }
+                }
+                //左侧小图标的处理
+                if(ss<-scorllH*(p_size-1)){
+                    $("#main").hide(200)
+                    // $("#main").css("visibility","hidden")
+                }else{
+                    $("#main").show(200)
+                    // $("#main").css("visibility","visible")
+                }
+            }
+
+            if(p_size==0){//当只最后一个信息页面时， 也不让显示
+                $("#main").hide(200);
+            }
+
+
+            //判断相应的dom是否加载完成并加载相应的脚本与样式
+            setTimeout(function () {
+                //将ajax返回的数据加载到APP中
+                for (var i = 0; i < htmlJson.pageSize; i++) {
+                    for (var j = 0; j < $("#lastEle" + i + " *[data-direction]").length; j++) {
+
+                        var str = htmlJson["page" + i].pageCont[$("#lastEle" + i + " *[data-direction]:eq(" + j + ")").attr("data-direction")];
+
+                        $("#lastEle" + i + " *[data-direction]:eq(" + j + ")").html(str.replace(/\n\r|\r\n/g, "<br/>").replace(/\n|\r/g, "<br/>").replace(/\s/g, "&nbsp;"));      //对空格、回车、换行等字符进行转义
+
+                    }
+                    $("#lastEle" + i + " #pageImg").attr('src', $("#lastEle" + i + " ins[data-direction='img']").html());
+                }
+                //loadCont();		//加载相应的脚本与样式
+            }, 500);
+        })
+
+
+    function loadCont() {
+        dynamicLoading.css("/ThemePhone3.2.3/theme" + num + "/css/index.css?" + new Date().getTime());
+        dynamicLoading.js("/ThemePhone3.2.3/theme" + num + "/js/index.js?" + new Date().getTime());
+    }
+
+    //广告上的左侧图处理
+
+})
+
+
+/*红包*/
+var img = document.getElementById('FlAD');
+var xPos = 200;
+var yPos = 200;
+var step = 1;
+var delay = 40;
+var height = 0;
+var Hoffset = 0;
+var Woffset = 0;
+var yon = 0;
+var xon = 0;
+var pause = true;
+var interval;
+img.style.top = yPos;
+function changePos() {
+    width = document.documentElement.clientWidth || document.body.clientWidth;
+    height = document.documentElement.clientHeight || document.body.clientHeight;
+    scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+    scrollTop = document.documentElement.scrollLeft || document.body.scrollTop;
+    Hoffset = img.offsetHeight;
+    Woffset = img.offsetWidth;
+    img.style.left = xPos + scrollLeft + 'px';
+    img.style.top = yPos + scrollTop + 'px';
+    if (yon) {
+        yPos = yPos + step;
+    } else {
+        yPos = yPos - step;
+    }
+    if (yPos < 0) {
+        yon = 1;
+        yPos = 0;
+    }
+    if (yPos >= (height - Hoffset)) {
+        yon = 0;
+        yPos = (height - Hoffset);
+    }
+    if (xon) {
+        xPos = xPos + step;
+    } else {
+        xPos = xPos - step;
+    }
+    if (xPos < 0) {
+        xon = 1;
+        xPos = 0;
+    }
+    if (xPos >= (width - Woffset)) {
+        xon = 0;
+        xPos = (width - Woffset);
+    }
+}
+function start() {
+    img.visibility = "visible";
+    interval = setInterval('changePos()', 60);
+}
+   start();
+   
+
+
+/*点击出积分值star*/
+$('#FlAD').one('click', function () {
+    window.location.href = "jifen?"
+	
+})
+function showData(integral) {
+        if (isNaN(parseInt(integral))) {
+			return false;
+        }else{
+            clearInterval(interval);
+            $('#FlAD').addClass("boxAdd animated bounceIn").html("+" + integral + "飞币").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                $(this).removeClass("bounceIn animated").addClass("flash animatedOut");
+				setTimeout(function(){
+					 if (datainfotype == 1) {		//判断是否是优惠商品
+                    window.location.href = "shangpin?";
+                } else if (datainfotype == 2) {
+                    window.location.href = "youhui?";
+                } else if (datainfotype == 4) {
+                    window.location.href = "daijinquan?";
+                }
+					},1000)
+               
+            })
+
+        }
+}
+
+
+
+</script>
+</html>

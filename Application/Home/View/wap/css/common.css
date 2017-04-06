@@ -1,0 +1,86 @@
+body,div,p,h1,h2,h3,h4,h5,ul,li,dl,dt,dd,span,em,i,img,input,button,textarea,label{
+    margin:0;
+    padding:0;
+    -webkit-text-size-adjust:none;
+    border: 0;
+    box-sizing: border-box;
+}
+html,body{
+	font-family: "Microsoft YaHei",sans-serif;
+	color: #c4c4c4c;
+	 font-size: 16px;
+}
+h1,h2,h3,h4,h5{
+    font-weight:normal;
+}
+ol,ul{list-style:none}
+table{border-collapse:collapse;border-spacing:0}
+a,a:hover{text-decoration:none;color: #4c4c4c;}
+/*安卓自带的浏览器上面，手指触碰上去，会有一个默认的背景颜色*/
+a:link,a:visited,a:hover,a:active{-webkit-tap-highlight-color:transparent}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:''}
+/*去苹果手机表单默认样式*/
+input[type="submit"],input[type="button"],input[type="text"],input[type="password"],input[type="reset"],input[type="radio"],button,input[type="checkbox"]{/*-webkit-appearance:none;*/box-sizing:content-box;border:0;box-shadow: none;outline:none;background:transparent }
+strong{
+	font-weight:normal;
+}
+ul,li{
+	list-style: none;
+}
+.cl{
+    float: left;
+    display: inline;
+}
+.cr{
+    float: right;
+    display: inline;
+}
+.radius5{
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+em,i{
+    font-style: normal;
+}
+html,body {
+    margin: 0;
+    padding:0;
+    /*width: 100%;
+    height: 100%;*/
+
+}
+input[type="button"], input[type="submit"], input[type="reset"] {
+    -webkit-appearance: none;
+}
+textarea {
+    -webkit-appearance: none;
+}
+a, button, input, textarea {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0;
+)  -webkit-user-modify:read-write-plaintext-only;
+}
+
+img { -webkit-touch-callout: none; }
+html { -webkit-tap-highlight-color: rgba(0, 0, 0, 0);}
+@media screen and (min-width:480px) and (max-width:639px) {
+
+}
+@media screen and (min-width:640px) and (max-width:719px) {
+
+}
+@media screen and (min-width:720px) and (max-width:749px) {
+
+}
+@media screen and (min-width:750px) and (max-width:799px) {
+
+}
+@media screen and (min-width:800px) and (max-width:959px) {
+
+}
+@media screen and (min-width:960px) and (max-width:1079px) {
+
+}
+@media screen and (min-width:1080px) {
+
+}

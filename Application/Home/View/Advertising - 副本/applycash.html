@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="css/global.css?timeStamp=2" rel="stylesheet" />
+    <script src="js/hammer.min.js?timeStamp=1"></script>
+    <script src="js/jquery.min.js?timeStamp=1"></script>
+    <script src="js/utils.js?timeStamp=9"></script>
+    <script src="js/services.js?timeStamp=2"></script>
+</head>
+<body style="background:#F5F5F7">
+    <h3 class="listH3">提现支付宝信息确认</h3>
+    <div class="listInputDisplay">
+            <label>收款人姓名:</label>
+            <span data-bind="ali_user_name"></span>
+        </div>
+    <div class="listInputDisplay">
+            <label>支付宝账号:</label>
+            <span data-bind="ali_number"></span>
+        </div>
+    <div class="listRadio" val="10">
+            <label>10元</label>
+        <div class="placeholder"></div>
+        <i></i>
+    </div>
+    <div class="listRadio" val="30">
+            <label>30元</label>
+            <div class="placeholder"></div>
+            <i></i>
+    </div>
+    <div class="listRadio" val="50">
+            <label>50元</label>
+        <div class="placeholder"></div>
+        <i></i>
+        </div>
+    <div class="listRemarks">
+            请认真核对支付宝账户的各项信息，一旦确认将不可更改。
+        </div>
+    <div class="listSubmit hui" id="submit">
+            确认提现
+        </div>
+    <div class="promptbox">
+        <div class="mask"></div>
+        <div class="promptbox-content">
+            <p>任务成功完成!</p>
+            <p>获得<span>2.5</span>元奖励!</p>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+        window.onresize = function () {
+            document.querySelector("html").setAttribute("style", "background:#F5F5F7;font-size:" + document.body.clientWidth / 6.4 + "px");
+        };
+        document.querySelector("html").setAttribute("style", "background:#F5F5F7;font-size:" + document.body.clientWidth / 6.4 + "px");
+    </script>
+    <script type="text/javascript">
+        var ViewModel = services.myBag();
+        if (ViewModel.is_withdrawals!="0") {
+            ViewModel.money = 0;
+        }
+        var selectMoney = 0;
+        new Hammer(document.getElementById("submit")).on("tap", function () {
+            if (!$("#submit").hasClass("hui")) {
+                //services.addWithdrawalsOrder(selectMoney);
+                window.location = "addWithdrawalsOrder?money=" + $(".listRadio.select").attr("val") + "&ali_user_name=" + utf8_to_b64(ViewModel.ali_user_name) + "&ali_number=" + utf8_to_b64(ViewModel.ali_number);
+            }
+            
+            //window.location = "popup?title=aaaaa&content=获得奖励2.5元";
+            //document.querySelector(".promptbox").style.display = "block";
+            //setTimeout(function () {
+            //    document.querySelector(".promptbox").style.display = "none";
+            //    //document.body.style.overflow = "";
+            //}, 3000);
+        });
+        loadlistRadio();
+        function loadlistRadio() {
+            
+            $(".listRadio").each(function (index) {
+                //console.log(index);
+                var $this = $(this);
+                switch (index) {
+                    case 0:
+                        if (ViewModel.money < 10) {
+                            $(".listRadio").addClass("hui");
+                            return;
+                        }
+                        break;
+                    case 1:
+                        if (ViewModel.money < 30) {
+                            $(".listRadio").eq(1).addClass("hui");
+                            $(".listRadio").eq(2).addClass("hui");
+                            return;
+                        }
+                        break;
+                    case 2:
+                        if (ViewModel.money < 50) {
+                            $(".listRadio").eq(2).addClass("hui");
+                            return;
+                        }
+                        break;
+                }
+                new Hammer($this.get(0)).on("tap", function () {
+                    if (!$this.hasClass("hui") && ViewModel.is_withdrawals=="0") {
+                        $(".listRadio").removeClass("select");
+                        $this.addClass("select");
+                        $("#submit").removeClass("hui");
+                    }
+                });
+            });
+        }
+        function reload() {
+            $(".listRadio").removeClass("select");
+            $("#submit").addClass("hui")
+            ViewModel = services.myBag();
+
+            loadlistRadio();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>详情</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="/Application/Home/View/Advertising/css/global.css?timeStamp=2" rel="stylesheet" />
+    <script src="/Application/Home/View/Advertising/js/hammer.min.js?timeStamp=1"></script>
+    <script src="/Application/Home/View/Advertising/js/jquery.min.js?timeStamp=1"></script>
+    <script src="/Application/Home/View/Advertising/js/utils.js?timeStamp=9"></script>
+    <script src="/Application/Home/View/Advertising/js/services.js?timeStamp=2"></script>
+</head>
+<body class="serviceDetails" style="background:#F5F5F7">
+    <div class="topImg">
+        <img data-bind="image" class="bigImg" />
+        <img style="width:6.4rem" class="borderBottom" src="/Application/Home/View/Advertising/images/icons/jczz.png" />
+    </div>
+    <div class="list">
+        <div class="listAdAbstract noBack">
+            <header>
+                <div>
+                    <i></i>
+                    <span data-bind="addTime">今天 10:22</span>
+                </div>
+                <h2 data-bind="title">广告标题在此处，字数UI设定广告标题在此处，字数UI</h2>
+                <img style="width:6.4rem" src="/Application/Home/View/Advertising/images/icons/jczz.png" />
+            </header>
+            <footer>
+                <span class="left"><img src="/Application/Home/View/Advertising/images/icons/yhdjq_1.png" /><p>优惠代金券</p></span>
+                <div class="placeholder"></div>
+                <span><span data-bind="typeName">单价:</span><span data-bind="price" class="price">137.0元</span></span>
+            </footer>
+        </div>
+        <div class="time">
+            <div class="item">
+                <span>时间:</span>
+                <span>
+                    <div data-bind="date">15.11.13至15.11.17</div>
+                    <div id="time" style="display:none;" class="sj" data-bind="time">9:00～18:00</div>
+                </span>
+            </div>
+            <div class="item"><span>条件:</span><span data-bind="conditionsUse">非上海地区</span></div>
+        </div>
+    </div>
+    <div class="layoutBox">
+        <div class="listH1_Left noBorder"><i style="background:#00c9ff;"></i><h2>内容介绍</h2></div>
+        <div data-bind="content" class="listBody">
+            <img src="/Application/Home/View/Advertising/images/u3946.jpg" />
+            <p>
+                同样的单品穿在不同人身上、搭配不一样的单品，总会带来不同时尚FEEL。高领毛衣，冬日里最为常见的时尚单品，也是衣橱里、街头上出镜率最高的百搭神器。瑟瑟冷风中还在寻求那股暖流？让高领毛衣为你保暖同时也增添更多自信，情绪高昂的去享受女性的神奇魅力吧。
+            </p>
+        </div>
+        <div class="listDataFooter">
+            <div class="placeholder"></div><span data-bind="addTime">15.11.13 10:22</span> 
+        </div>
+    </div>
+    <script type="text/javascript">
+        window.onresize = function () {
+            document.querySelector("html").setAttribute("style", "font-size:" + document.body.clientWidth / 6.4 + "px");
+        };
+        document.querySelector("html").setAttribute("style", "font-size:" + document.body.clientWidth / 6.4 + "px");
+    
+
+        var ViewModel = services.getzhDetail2({$info['dataId']}, 3);
+        if (ViewModel.method == "1") {
+            ViewModel.typeName = "优惠: ";
+            ViewModel.price = ViewModel.price + "折";
+
+        }
+        else {
+            ViewModel.typeName = "代金券: ";
+            ViewModel.price = ViewModel.price + "元";
+        }
+        ViewModel.content = decodeURIComponent(escape(window.atob(ViewModel.content)));
+        ViewModel.date =new Date(parseInt(ViewModel.startDay + "000")).format("yyyy-MM-dd") + " 至 " +new Date(parseInt(ViewModel.endDay + "000")).format("yyyy-MM-dd");// formatDate(ViewModel.startDay) + " 至 " + formatDate(ViewModel.endDay);
+        if (ViewModel.isAllDay=="2") {
+            $("#time").show();
+            ViewModel.time = ViewModel.startTime + "～" + ViewModel.endTime;
+        }
+        document.querySelectorAll("title")[0].innerHTML = ViewModel.title;
+    </script>
+</body>
+</html>

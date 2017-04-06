@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="css/global.css?timeStamp=2" rel="stylesheet" />
+    <script src="js/hammer.min.js?timeStamp=1"></script>
+    <script src="js/jquery.min.js?timeStamp=1"></script>
+    <script src="js/utils.js?timeStamp=9"></script>
+    <script src="js/services.js?timeStamp=2"></script>
+</head>
+<body>
+    <div class="layoutMobileBody myWallet">
+        <header>
+            <h1><span data-bind="money">0</span><span class="yuan">元</span></h1>
+            <h3><span data-bind="integral">0</span>飞币</h3>
+            <i data-tap="walletrules">?</i>
+        </header>
+        <div id="zh1" class="listButton" data-tap="boundaccount">
+            <div class="left">提现支付宝账号:</div>
+            <div class="right">
+                <span>绑定</span><img class="right" src="images/icons/arrowright.png" />
+            </div>
+        </div>
+        <div id="zh2" class="listInputDisplay" style="display:none">
+            <label>提现支付宝账号:</label>
+            <span data-bind="userName">兔斯基</span>
+        </div>
+        <div class="listTextBody">
+            每日至多提现一次，每天17:00左右提现打款，提现奖金24小时内到账。17:00后提交的申请自动排到次日。
+        </div>
+        <div id="applycash" class="listButton mt20">
+            <div class="left">申请提现:</div>
+            <div class="right">
+                <span></span><img class="right" src="images/icons/arrowright.png" />
+            </div>
+        </div>
+        <div class="listButton" data-tap="redeem">
+            <div class="left">飞币兑换:</div>
+            <div class="right">
+                <span></span><img class="right" src="images/icons/arrowright.png" />
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        window.onresize = function () {
+            document.querySelector("html").setAttribute("style", "font-size:" + document.body.clientWidth / 6.4 + "px");
+        };
+        document.querySelector("html").setAttribute("style", "font-size:" + document.body.clientWidth / 6.4 + "px");
+
+        //if (getQueryString("phone") == "12345678900") {
+            
+        //}
+        var ViewModel = services.myBag();
+        if (typeof (ViewModel) == "undefined" || typeof (ViewModel.status) == "undefined" || ViewModel.status == "35") {
+            window.location = "login";
+        }
+       
+        if (ViewModel.aliIsSet == "1") {
+            $("#zh2").show();
+            $("#zh1").hide();
+            ViewModel.userName = ViewModel.ali_number;
+            if (ViewModel.ali_user_name!="") {
+                ViewModel.userName = ViewModel.userName + "(" + ViewModel.ali_user_name + ")";
+            }
+        }
+        
+        new Hammer(document.getElementById("applycash")).on("tap", function () {
+            if (ViewModel.is_withdrawals != "0") {
+                //"popup?title=" + utf8_to_b64(data.blackStr) + "&content=" + utf8_to_b64(data.blueStr);
+                window.location = "popup?" + "content=" + utf8_to_b64("今天已经申请过了哦！");
+                return;
+            }
+            if (ViewModel.aliIsSet == "1") {
+                window.location = "applycash";
+            }
+            else {
+                window.location = "boundaccount";
+            }
+        });
+    </script>
+</body>
+</html>

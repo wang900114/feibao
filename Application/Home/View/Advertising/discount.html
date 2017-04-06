@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="/Application/Home/View/Advertising/css/global.css?timeStamp=2" rel="stylesheet" />
+    <script src="/Application/Home/View/Advertising/js/hammer.min.js?timeStamp=1"></script>
+    <script src="/Application/Home/View/Advertising/js/jquery.min.js?timeStamp=1"></script>
+    <script src="/Application/Home/View/Advertising/js/utils.js?timeStamp=9"></script>
+    <script src="/Application/Home/View/Advertising/js/services.js?timeStamp=2"></script>
+</head>
+<body class="serviceDetails" style="background:#F5F5F7">
+    <div id="normal" style="display:none;">
+        <div class="topImg">
+            <img data-bind="image" class="bigImg" />
+            <img style="width:6.4rem" class="borderBottom" src="images/icons/jczz.png" />
+        </div>
+        <div class="list">
+            <div class="item">
+                <header style="height: auto;">
+                    <div>
+                  <i></i>
+                  <span data-bind="addTime"></span>
+              </div>
+                    <h2 data-bind="title"></h2>
+                </header>
+                <footer>
+                    <span class="left"><img src="images/icons/yhdjq_1.png" /><p>优惠代金券</p></span>
+                    <div class="placeholder"></div>
+                    <span><span data-bind="typeName">价格:</span><span data-bind="price" class="price">137.0</span></span>
+                </footer>
+            </div>
+            <div class="time">
+                <div class="item">
+                    <span>时间:</span>
+                    <span>
+                        <div data-bind="date">15.11.13至15.11.17</div>
+                        <div id="time" style="display:none;" class="sj" data-bind="time">9:00～18:00</div>
+                    </span>
+                </div>
+                <div class="item"><span>条件:</span><span data-bind="conditionsUse">非上海地区</span></div>
+            </div>
+        </div>
+        <div class="layoutBox">
+            <div class="listH1_Left noBorder"><i style="background:#00c9ff;"></i><h2>内容介绍</h2></div>
+            <div data-bind="content" class="listBody">
+                <img src="images/u3946.jpg" />
+                <p>
+                    同样的单品穿在不同人身上、搭配不一样的单品，总会带来不同时尚FEEL。高领毛衣，冬日里最为常见的时尚单品，也是衣橱里、街头上出镜率最高的百搭神器。瑟瑟冷风中还在寻求那股暖流？让高领毛衣为你保暖同时也增添更多自信，情绪高昂的去享受女性的神奇魅力吧。
+                </p>
+            </div>
+            <div class="listDataFooter">
+                <div class="placeholder"></div><span data-bind="addTime">15.11.13 10:22</span>
+            </div>
+        </div>
+        <div style="height:.8rem;"></div>
+        <div class="feibao-adv">
+            <img style="width: 1rem;height: 1rem" src="images/icons/icon_bg.png" alt="">
+            <span>免费在飞报发布营销信息、活动新闻</br>请登录电脑：http://mp.feibaokeji.com</br> 城市合作加盟电话：400-6520458</span>
+        </div>
+        <div id="receive" class="draw">领取</div>
+        <div id="received" class="draw" style="color:#808396;display:none;">已领取</div>
+    </div>
+    <div id="offshelf" style="font-size:.32rem;color:#99989D;display:none;position: absolute;left: 0;top: 0;bottom: 0;right: 0;-webkit-box-align:center;-webkit-align-items:center;align-items:center;" class="layoutCenter">
+        该优惠代金券已下架！
+    </div>
+    <script type="text/javascript">
+        window.onresize = function () {
+            document.querySelector("html").setAttribute("style", "font-size:" + document.body.clientWidth / 6.4 + "px");
+        };
+        document.querySelector("html").setAttribute("style", "font-size:" + document.body.clientWidth / 6.4 + "px");
+    
+
+        var ViewModel = services.getzhDetail(getQueryString("advId"), 3);
+        if (ViewModel.status != "1") {
+            $("#offshelf").show();
+        }
+        else {
+            $("#normal").show();
+        }
+        if (ViewModel.method == "1") {
+            ViewModel.typeName = "优惠: ";
+            ViewModel.price = ViewModel.price + "折";
+
+        }
+        else {
+            ViewModel.typeName = "代金券: ";
+            ViewModel.price = ViewModel.price + "元";
+        }
+        ViewModel.content = decodeURIComponent(escape(window.atob(ViewModel.content)));
+
+        ViewModel.date = new Date(parseInt(ViewModel.startDay + "000")).format("yyyy-MM-dd") + " 至 " +new Date(parseInt(ViewModel.endDay + "000")).format("yyyy-MM-dd");
+        if (ViewModel.isAllDay=="2") {
+            $("#time").show();
+            ViewModel.time = ViewModel.startTime + "～" + ViewModel.endTime;
+        }
+        new Hammer(document.getElementById("receive")).on("tap", function () {
+            if (getQueryString("phone") == "12345678900") {
+                window.location = "popup?title=sdaf&content=asdf";
+                return;
+            }
+            var data = services.addFavorable(getQueryString("advId"));
+            if (data.status=="36") {
+                window.location = "popup?title=" + utf8_to_b64("优惠/代金券已过期") + "&content=" + utf8_to_b64("优惠/代金券已过期");
+            } else {
+                window.location = "popup?title=" + utf8_to_b64("领取成功") + "&content=" + utf8_to_b64("已存放至我的优惠代金券中");
+
+                $("#receive").hide();
+                $("#received").show();
+            }
+        });
+        if (ViewModel.isReceive=="1") {
+            $("#receive").hide();
+            $("#received").show();
+        }
+    </script>
+</body>
+</html>

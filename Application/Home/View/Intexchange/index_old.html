@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>飞币兑换</title>
+    <style>
+        *{margin:0; padding:0;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-user-select: none;  /* Chrome all / Safari all / 禁止用户在webview中选中*/  }
+        input,button,select,textarea{outline:none;margin:0; padding:0;}
+        textarea{resize:none}
+        body{background-color: #f0eff5}
+        #banner{width:100%;text-align: center}
+        #in_ban{margin:11% auto; position:relative;}
+        #in_ban>div{line-height: 40px;height:40px;}
+        #banner>a>img{position:absolute;top:3%;right: 10%;width: 7%;display:block}
+        #jf{font-size: 24px;color:#ff004e;}
+        #hf{font-size: 18px;color:#393837;}
+        /*--------------------------phpne_num--------------------------*/
+        #phone_num{height:3.5em;width:100%;background:url(ph_num_bg.png) 8px center no-repeat;background-size:12px;background-color: white; }
+        #num{height:23px; line-height: 3.4em;font-size: 18px;color:#494a4c;margin-left:30px;float:left;}
+        #phone_num>#bd{font-size: 16px;color: #c7c7c7;line-height: 3.5em;float: right;display: block; padding-right: 3%;}
+        #sel{height:4em;width:auto;background-color:white;margin-top:10%;font-size: 14px;line-height:4em;}
+        #sel>#czy{float:left;width: 35px;padding-left: 44px;color: #ff004e;background: url(hf_bg.png) no-repeat 0.5em center ;background-size: 2em auto;}
+        #sel>#czjf{background:url(jf.jpg) no-repeat center right;margin-right: 0.3em;background-size: 0.5em auto;padding-right: 20px;}
+        input#btn{width:95%;height:3em;line-height:3em;text-align:center;background:#FFF;color:#F00;-moz-border-radius:1px;-webkit-border-radius:1px;border-radius:1px;border:1px solid #dcd7d3;margin:30px auto 0;display:block;font-size:1.2em;border-radius: 6px;}
+        #disc>p{font-size:0.75em;color:#7f7f7f;line-height:18px;margin:18px 10px;}
+        ul,li{list-style:none;margin:0;padding:0}
+        #show_error{ position: fixed; height: 100%; width: 100%; z-index: 100; display: none; top: 0; left: 0; background:rgba(00, 00, 00, 0.5) }
+        #show_error span,.reveal-modal{visibility:hidden;top:20%;width:85%;position:absolute;z-index:101;padding:30px 0px 10px;-webkit-border-radius:5px;border-radius:5px;-webkit-box-shadow:0 0 10px rgba(0,0,0,.4);-box-shadow:0 0 10px rgba(0,0,0,.4);background-color:#FFF;}
+        .reveal-modal .close-reveal-modal{text-shadow: 0 -1px 1px rbga(0,0,0,.6); cursor: pointer;background-color:#aaa;color:white;}
+        .reveal-modal ul li{height:4em;line-height:4em;display:block;text-align:center;padding:0 15px;font-size: 0.8em;}
+        #czy{float:left;}
+        #czjf{float:right;}
+        #kc_w{float:left;}
+        #al_btn{height:40px;line-height:40px;  margin-top: 10px;}
+        #al_btn span{display:block;float:left;width: 50%}
+        #al_btn span a{display:block;text-align:center;cursor:pointer;border-radius:5px;width:50%;margin: 0 auto;}
+        .selectChose{background-color:#ccc}
+        .selectCanle{background-color:white}
+        .submit-reveal-modal{background-color:#F96;color:white}
+    </style>
+    <script src="/Public/js/common.js"></script>
+    <script type="text/javascript">
+        var Phone=getQueryString("phone");
+        var Version=1.0;
+        var UserId=decodeURI(getQueryString("userId"));
+        var mobile_platform = getQueryString("mobile_platform");
+        var agreement = getQueryString("agreement");
+        //var private_key = getQueryString("private_key");
+        //var secret_key = getQueryString("secret_key");
+        var Flag=1;
+        var v=0;
+        var patt=/^1\d{10}$/;   //正则判断手机号码
+    </script>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="banner">
+    <a href="rule.html?rule"><img src="ask.jpg"></a>
+    <div id="in_ban">
+        <div id="jf">您有<span></span>飞币</div>
+        <!--<div id="hf">最多可兑换<span></span>元话费</div>-->
+
+    </div>
+</div>
+<form methed="get" action="http://www.feibaokeji.com/duihuan/">
+    <div id="phone_num"><span id="num"></span><span id="bd">绑定手机号</span></div>
+    <div id="sel" class="big-link" data-reveal-id="myModal" data-animation="fade">
+        <span id='czy'><span id='cz_o'>1</span>元</span><span id='kc_w'>(剩余<span id='kc'></span>份)</span><span id='czjf'>消费<span id='cz_t'>2000</span>飞币</span>
+    </div>
+    <div id="myModal" class="reveal-modal">
+        <ul></ul>
+        <div id="al_btn">
+            <span><a class="submit-reveal-modal">确定</a></span> <span><a class="close-reveal-modal">取消</a></span>
+        </div>
+    </div>
+    <div id="disc">
+         <p>每日10:00更新开兑截止到当日17:00，请合理安排兑换时间。</p>
+        <p>每位用户每日最多可成功兑换一次，如果未能成功兑换，请把握下次兑换机会。</p> 
+        <!--<p>每日10:00，13:00，16:00更新开兑截止到当日17:00，请合理安排兑换时间。</p>
+        <p>每位用户每周最多可成功兑换一次，如果未能成功兑换，请把握下次兑换机会。</p>-->
+        <p id="test"></p>
+    </div>
+    <input type="submit" id="btn" value="提 交">
+</form>
+<div id="show_error"><span style='display:block;text-align:center;top:40%;padding-top:14px'></span></div>
+
+</body>
+<script type="text/javascript">
+$(function(){
+
+
+
+    var ifData;//兑换时间段 变量
+    /*******获取兑换话费、库存、和消费积分*********/
+    function dataDtock(){
+        var str = "";
+        $.ajax({
+            url:host+"/index.php/API_3.2/NewBill/dataStock",
+            data:{ userId: UserId, phone:Phone,mobile_platform: mobile_platform,agreement: agreement},
+            type:"post",
+            dataType:"json",
+            success:function(data){
+                $("#kc").text(data.info[0].stock);
+                for(i in data.info){
+                    str +="<li onclick='chose("+i+")'><span id='czy'><span id='cz_o'>"+data.info[i].denomination+"</span>元</span><span id='kc_w'>(剩余<span id='kc'>"+data.info[i].stock+"</span>份)</span><span id='czjf'>消费<span id='cz_t'>"+data.info[i].integral+"</span>飞币</span></li>";
+                }
+                if(str==""){
+                    $("#btn").prop({disabled: true}).css({color:'#ccc'});
+                    $("#myModal ul").html(str="<span style='display:block;text-align:center'>账号异常，请重新登录</span>");
+                }
+                $("#myModal ul").html(str);
+                $("#myModal ul li").eq(0).addClass("selectChose");
+
+
+                ifData=data.timeflag;// 兑换时间段变量
+
+                if(ifData==1){
+                    if(data.info[0].stock==0){//如果库存为0 ， 不可提交
+                        $("#btn").prop({disabled: true}).css({color:'#ccc'});
+                    }else {
+                        $("#btn").prop({disabled: false}).css({color:'red'});
+                    }
+                }else{
+                    $("#btn").prop({disabled: true}).css({color:'#ccc'});
+                }
+
+            }
+        })
+    }
+    dataDtock()
+
+    setTimeout(function(){
+        $.ajax({
+            url:""+host+"/index.php/API_3.2/NewBill/NewpreExchange",
+            data:{ userId: UserId, phone:Phone,mobile_platform: mobile_platform,agreement: agreement },
+            type:"post",
+            dataType:"json",
+            success:function(data){
+                if(data.info){
+                    $("#jf span").html(data.info.integral);//总积分
+                    $("#hf span").html(data.info.max);  // 最大面值
+                    // check();
+                    //第一次进来，如果当前积分小于2000时， 不可兑换
+                    if(parseInt($("#cz_t").text()) > parseInt($("#jf span").text())){
+                        $("#btn").attr("disabled",true).css({color: '#ccc'});
+
+                    }
+
+                }
+
+            }
+        })
+    },5)
+
+
+
+    // $("#num").val(Phone);
+    $("#num").text(Phone);
+    $(".reveal-modal,#show_error span").css({'left':($(window).width()-$(".reveal-modal").width())/2});
+    $("#sel").on('click',function(){
+        $("#myModal").css({'visibility':'visible'});
+        $("#show_error").css({'display':'block'});
+        dataDtock();
+    })
+
+    /*点击确定按钮选中要兑换的话费*/
+    $(".submit-reveal-modal").click(function(){
+        $("#sel").html($("#myModal ul").find(".selectChose").html());
+        $("#myModal").css({'visibility':'hidden'});
+        $("#show_error").css({'display':'none'});
+        if(ifData==1){
+            check();
+        }else{
+            $("#btn").prop({disabled: true}).css({color:'#ccc'});
+        }
+
+    })
+    $(".close-reveal-modal").click(function(){
+        $("#myModal").css({'visibility':'hidden'});
+        $("#show_error").css({'display':'none'});
+    })
+    //check();
+});
+
+function check(){
+
+    if( parseInt($("#sel>#kc_w>#kc").text())>0){//判断库存为0时， 不可兑换
+
+        //总分积小于 当前选中的 充值的积分时 ，兑换按钮不可用。
+        if(parseInt($("#cz_t").text()) > parseInt($("#jf span").text())){
+            $("#btn").prop({disabled: true}).css({color:'#ccc'});               //当前积分小于最小消费积分时，禁用兑换按钮
+        }else{
+            $("#btn").prop({disabled: false}).css({color:'red'});
+        }
+    }else{
+        $("#btn").prop({disabled: true}).css({color:'#ccc'});
+    }
+}
+/*点击选择要兑换的话费*/
+function chose(a){
+    $("#myModal ul li").eq(a).addClass("selectChose").siblings().removeClass("selectChose");
+}
+
+/*
+ 点击兑换按钮提交
+ Phone:手机号码;
+ Money:话费;
+
+ pwd:操作密码；
+ Imei：IMEI号;
+ */
+//IOS字符转义
+function UrlDecode(zipStr){
+    var uzipStr="";
+    for(var i=0;i<zipStr.length;i++){
+        var chr = zipStr.charAt(i);
+        if(chr == "+"){
+            uzipStr+=" ";
+        }else if(chr=="%"){
+            var asc = zipStr.substring(i+1,i+3);
+            if(parseInt("0x"+asc)>0x7f){
+                uzipStr+=decodeURI("%"+asc.toString()+zipStr.substring(i+3,i+9).toString());
+                i+=8;
+            }else{
+                uzipStr+=AsciiToString(parseInt("0x"+asc));
+                i+=2;
+            }
+        }else{
+            uzipStr+= chr;
+        }
+    }
+
+    return uzipStr;
+}
+
+function StringToAscii(str){
+    return str.charCodeAt(0).toString(16);
+}
+function AsciiToString(asccode){
+    return String.fromCharCode(asccode);
+}
+
+
+
+function change(pwd,Imei,mobile_platform,agreement,secret_key,private_key){
+    if(mobile_platform=="ios"){
+        var destr = UrlDecode(pwd);
+    }else{
+        var destr = pwd;
+    }
+    var Phone_ch= $("#num").text();
+    var Money=$("#sel #czy #cz_o").text();
+    var t = null;
+    $.ajax({
+        url:""+host+"/index.php/API_3.2/NewBill/checkExchange",
+        data:{  version:Version,
+            userId:UserId,
+            phone:Phone,
+            //rechargePhone:"18617810312",
+            money:Money,
+            handlePwd:destr,
+            imei:Imei,
+            mobile_platform: mobile_platform,
+            agreement: agreement,
+            secret_key:secret_key,
+            private_key:private_key
+        },
+        type:"post",
+        dataType:"json",
+        success:function(data){
+            if(data.status==1){
+
+                $.ajax({
+                    url:""+host+"/index.php/API_3.2/NewBill/NewpreExchange",
+                    data:{ userId: UserId, phone:Phone,mobile_platform: mobile_platform,agreement: agreement },
+                    type:"post",
+                    dataType:"json",
+                    success:function(data){
+                        $("#jf span").html(data.info.integral);//总积分
+                        $("#hf span").html(data.info.max);  // 最大面值
+                    }
+                })
+
+
+
+                setTimeout(function(){
+                    window.location.href="http://www.feibaokeji.com/?exsuccess" //兑换成功跳转兑换记录页面
+                },300);
+            }else{
+                $("#show_error").css({'display':'block'});
+                $("#show_error span").css({'visibility':'visible','display':'block'}).html(data.message);
+                setTimeout(function(){
+                    $("#show_error").css({'display':'none'});
+                    $("#show_error span").css({'visibility':'hidden','display':'none'});
+                },1500);
+            }
+        }
+    })
+}
+</script>
+</html>

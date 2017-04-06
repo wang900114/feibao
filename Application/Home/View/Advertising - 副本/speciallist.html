@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="/Application/Home/View/Advertising/css/global.css?timeStamp=2" rel="stylesheet" />
+    <script src="/Application/Home/View/Advertising/js/hammer.min.js?timeStamp=1"></script>
+    <script src="/Application/Home/View/Advertising/js/jquery.min.js?timeStamp=1"></script>
+    <script src="/Application/Home/View/Advertising/js/utils.js?timeStamp=9"></script>
+    <script src="/Application/Home/View/Advertising/js/services.js?timeStamp=2"></script>
+</head>
+<body class="speciallist">
+<script type="text/javascript">
+    window.onresize = function () {
+        document.querySelector("html").setAttribute("style", "background:#F5F5F7;font-size:" + document.body.clientWidth / 6.4 + "px");
+    };
+    document.querySelector("html").setAttribute("style", "background:#F5F5F7;font-size:" + document.body.clientWidth / 6.4 + "px");
+</script>
+    <ul id="specialListBox">
+        <li data-list="specialList" data-list-tap="%this%specialDetails?themeId={%id%}">
+            <div class="special-back" style="background-image:url('images/u3950.png') " data-list-bind="%style%backgroundImage:list_image">
+                <div style="position: absolute;left: 0;top: 0;right: 0;height: 100%;background-color: #000;opacity: .3;"></div>
+            </div>
+            </div>
+            <div class="special-tit">
+                <h2 data-list-bind="title">北京名吃 这些名人在哪里吃</h2>
+                <p>第<span data-list-bind="id"></span>期/ <span></span></p>
+            </div>
+        </li>
+    </ul>
+    <div id="listSLoading" class="listClickLoading" style="margin-top: 0.2rem;">
+        点击加载更多
+    </div>
+    <div style="display:none;margin-top: 0.2rem;" class="listClickLoading">
+        没有数据了
+    </div>
+</body>
+</html>
+<script>
+    var ViewModels = services.getSpecialList(getQueryString("dataId"));
+    var ViewModel={'specialList':ViewModels};
+    var page=1;
+    new Hammer(document.getElementById("listSLoading")).on("tap", function () {
+        var d = services.getSpecialList(getQueryString("dataId"), page + 1);
+        if (typeof d == "undefined"|| d.length==0) {
+            $(".listClickLoading").eq(0).hide();
+            $(".listClickLoading").eq(1).show();
+        }
+        else {
+            for (var i = 0; i < d.length; i++) {
+                var advInfo0 = d[i];
+                var add = '<li data-list="specialList" data-list-tap="specialDetails?themeId='+advInfo0.id+'">'+
+                        '<div class="special-back" data-list-bind="%style%backgroundImage:list_image" style="background-image:url('+advInfo0.big_image+')" >'+
+                        '<div style="position: absolute;left: 0;top: 0;right: 0;height: 100%;background-color: #000;opacity: .3;"></div>'+
+                        '</div>'+
+                        '</div>'+
+                        '<div class="special-tit">'+
+                        '<h2 data-list-bind="title">'+advInfo0.title+'</h2>'+
+                        '<p>第<span data-list-bind="id">'+advInfo0.id+'</span>期/ <span></span></p>'+
+                        '</div>'+
+                       '</li>';
+                $("#specialListBox").append(add);
+            }
+            var taps = document.querySelectorAll("[data-tap]");
+            for (var i = 0; i < taps.length; i++) {
+                var elThis = taps[i];
+                new Hammer(elThis).on("tap", function () {
+                    window.location = this.getAttribute("data-tap");
+                }.bind(elThis));
+            };
+            var taps = document.querySelectorAll("[data-list-tap]");
+            for (var i = 0; i < taps.length; i++) {
+                var elThis = taps[i];
+                new Hammer(elThis).on("tap", function () {
+                    window.location = this.getAttribute("data-list-tap");
+                }.bind(elThis));
+            };
+            page++;
+        }
+
+    });;
+</script>

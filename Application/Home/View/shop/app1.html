@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+
+    <title>他的店铺详情</title>
+</head>
+<style type="text/css">
+    body{
+
+        font-family: "微软雅黑";
+    }
+    .small{
+        font-size: 0.89em;
+        color: #8e929d;
+        margin:0;
+        padding:0;
+        font-weight: 100;
+        text-align: center;
+
+    }
+    .conDiv{
+        position: absolute;
+        width: 240px;
+        height: 30px;
+        left: 50%;
+        top:50%;
+        margin-left: -120px;
+        margin-top:-15px;
+
+
+
+    }
+
+
+</style>
+<body>
+<div class="conDiv">
+  <!--  <h2 class="small">这个人很懒，<br>什么也没有留下</h2>-->
+    <a  id="zjmobliestart" target="_blank" >唤醒浙江移动手机营业厅！</a>
+	<br>
+	<br>
+	
+	<!--<a href="https://itunes.apple.com/cn/app/id477927812" id="openApp">贴吧客户端</a>  -->
+</div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+
+/*    function aa(){
+
+    }
+    aa()*/
+if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
+    var loadDateTime = new Date();
+    window.setTimeout(function() {
+            var timeOutDateTime = new Date();
+            var otext=timeOutDateTime - loadDateTime;
+
+
+            if (otext < 5000) {
+                window.location = "https://itunes.apple.com/cn/app/fei-bao/id737395949?mt=8";
+              
+            } else {
+                window.close();
+            }
+        },
+        2000);
+    window.location = " QQ41BD5DD8:// ";
+}
+document.querySelector("#zjmobliestart").onclick=function(){
+
+
+
+}
+    /* else if (navigator.userAgent.match(/android/i)) {
+         var state = null;
+         try {
+             state = window.open("apps custom url schemes ", '_blank');
+         } catch(e) {}
+         if (state) {
+             window.close();
+         } else {
+             window.location = "要跳转的页面URL";
+         } }*/
+
+   /* var log = function (msg) {
+        $('body').before('<div class="log">' + msg + '</div>');
+    };
+    var timeout, t = 1000, hasApp = true;
+    setTimeout(function () {
+        if (hasApp) {
+            log('安装了app');
+            $('#dl_app').hide();
+
+        } else {
+            log('未安装app');
+            $('#dl_app').show();
+            log('开始强制下载');
+            forceDownload();
+        }
+    }, 2000)
+    function testApp() {
+        var t1 = Date.now();
+        var ifr = $('<iframe id="ifr"></iframe>')
+        //ifr.attr('src', 'QQ41BD5DD8://');
+        ifr.attr('src', 'fbapp://');
+        $('body').append(ifr);
+
+
+        timeout = setTimeout(function () {
+            try_to_open_app(t1);
+        }, t);
+    }
+    function try_to_open_app(t1) {
+        var t2 = Date.now();
+        if (!t1 || t2 - t1 < t + 200) {
+            hasApp = false;
+        }
+    }*/
+
+
+</script> 
+<script type="text/javascript">
+
+
+   /* (function () {
+        var openUrl = window.location.search;
+        try {
+            openUrl = openUrl.substring(1, openUrl.length);
+        } catch (e) {
+        }
+        var isiOS = navigator.userAgent.match('iPad')
+            || navigator.userAgent.match('iPhone')
+            || navigator.userAgent.match('iPod'), isAndroid = navigator.userAgent
+            .match('Android'), isDesktop = !isiOS && !isAndroid;
+        if (isiOS) {
+            window.location = "[scheme]://[host]?url=" + openUrl;
+            setTimeout(function () {
+                window.location = "itms-apps://itunes.apple.com/app/[name]/[id]?mt=8";
+            }, 25);
+
+        } else if (isAndroid) {
+            window.location = "intent://[host]/" + "url=" + openUrl + "#Intent;scheme=[scheme];package=[package_name];end";
+        } else {
+            window.location.href = openUrl;
+        }
+    })();
+
+    document.getElementById("zjmobliestart").onclick = applink();
+*/
+</script>
+</body>
+</html>

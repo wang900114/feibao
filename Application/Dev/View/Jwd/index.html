@@ -1,0 +1,14 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>采集城市数据</title>
+</head>
+<body>
+	<eq name="Think.session.jwdId" value="">
+		<a href="__URL__/get/id/1" target="navTab" rel="data"><button>开始处理</button></a>
+	<else/>
+		<a href="__URL__/get/id/1" target="navTab" rel="data"><button>重新处理</button></a>
+		<a href="__URL__/get/id/{$Think.session.jwdId}" target="navTab" rel="data"><button>继续上一次记录 {$Think.session.jwdId}</button></a>
+	</eq>
+</body>
+</html>

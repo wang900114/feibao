@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	
+	<!-- client_share.css -->
+    <!--<link href="http://iocos.lenovows.com/v2/tiny/view/0041c22d0f210400?location=http://iocos.lenovows.com/v2/object/0041a084766c5400:feibaokeji/0041c22d0f200400" rel="stylesheet" type="text/css">-->
+    <link href="/Public/Css/client_share.css" rel="stylesheet" type="text/css">
+	<style>
+		.xx-word{font-size:12px;max-height:120px;}
+		.wy_new{text-align:center;padding-top:4%;}
+		.wy_new img{width:70%;margin-top:9%;}
+	</style>
+    <title>{$titles}</title>
+    <script type="text/javascript">
+        window.descData = [{$contentStr}];
+    </script>
+	
+	<!-- jquery_1.4.2.js 
+    <script type="text/javascript" src="http://iocos.lenovows.com/v2/tiny/view/0041c22d8aac0400?location=http://iocos.lenovows.com/v2/object/0041a084766c5400:feibaokeji/0041c22d8aab0400"></script>-->
+    <script type="text/javascript" src="/Public/js/jquery_1.4.2.js"></script>
+	
+	<!-- iscroll.js 
+    <script type="text/javascript" src="http://iocos.lenovows.com/v2/tiny/view/0041c22d69720300?location=http://iocos.lenovows.com/v2/object/0041a084766c5400:feibaokeji/0041c22d69710300"></script>-->
+    <script type="text/javascript" src="/Public/js/iscroll.js"></script>
+	
+	<!-- pic_run.js 
+    <script type="text/javascript" src="http://iocos.lenovows.com/v2/tiny/view/0041c22daa910100?location=http://iocos.lenovows.com/v2/object/0041a084766c5400:feibaokeji/0041c22daa900100"></script>-->
+    <script type="text/javascript" src="/Public/js/pic_run.js"></script>
+
+</head>
+<body>
+<div class="huanlight" id="slider" style="height: 903px;">
+    <div id="slider_wrapper" style="overflow: hidden;">
+        <ul id="slider_wrapper_ul" style="width: 9395px; transition: -webkit-transform 0ms; -webkit-transition: -webkit-transform 0ms; -webkit-transform-origin: 0px 0px; -webkit-backface-visibility: hidden; -webkit-transform-style: preserve-3d; -webkit-transform: translate3d(0px, 0px, 0);">
+		{$imageStr}
+            <!--<li style="position: relative; width: 1879px; background:url(__PUBLIC__/Images/news/share_bg.jpg) repeat center center;">-->
+            <li style="position: relative; width: 1879px;background: #1e1f20;">
+                <div class="wy_new">
+                    <!--结束感谢区图片-->
+                    <img src="__PUBLIC__/Images/news/share_logo.png">
+                    <br>
+					<img src="__PUBLIC__/Images/news/share_er.png">
+                    <!--下载App地址   二维码地址-->
+                    <!--<a href="http://app.feibaokeji.com/logo2.html"><img src="__PUBLIC__/Images/news/share_dl.png"></a>-->
+                    <a href="http://dev.feibaokeji.com/index.php/Home/Invitation/index"><img src="__PUBLIC__/Images/news/share_dl.png"></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="dl-xwkhd"><!--<a href="http://app.feibaokeji.com/logo2.html">飞报客户端</a>-->
+    <a href="http://dev.feibaokeji.com/index.php/Home/Invitation/index">飞报客户端</a>
+    </div>
+    <div class="light-word" id="pic_info">
+        <div class="tit-word clearfix">
+            <p>[<b id="current_page">1</b> /{$total}]</p>
+        </div>
+        <div class="xx-word" id="current_desc"></div>
+    </div>
+</div>
+</body></html>

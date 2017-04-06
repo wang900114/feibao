@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="css/global.css" rel="stylesheet" />
+</head>
+<body>
+        <h3 class="listH3">提现支付宝信息确认</h3>
+        <div class="listInputDisplay">
+            <label>收款人姓名:</label>
+            <span>兔斯基</span>
+        </div>
+        <div class="listInputDisplay">
+            <label>支付宝账号:</label>
+            <span>185****8888</span>
+        </div>
+        <div class="listRadio">
+            <label>10元</label>
+        </div>
+        <div class="listRadio">
+            <label>30元</label>
+            <div class="placeholder"></div>
+            <i></i>
+        </div>
+        <div class="listRadio">
+            <label>50元</label>
+        </div>
+        <div class="listRemarks">
+            请认真核对支付宝账户的各项信息，一旦确认将不可更改。
+        </div>
+        <div class="listSubmit" id="submit">
+            确认提现
+        </div>
+    <div class="promptbox">
+        <div class="mask"></div>
+        <div class="promptbox-content">
+            <p>任务成功完成!</p>
+            <p>获得<span>2.5</span>元奖励!</p>
+        </div>
+    </div>
+    <script type="text/javascript">
+        window.onresize = function () {
+            document.querySelector("html").setAttribute("style", "font-size:" + document.body.clientWidth / 6.4 + "px");
+        };
+        document.querySelector("html").setAttribute("style", "font-size:" + document.body.clientWidth / 6.4 + "px");
+    </script>
+    <script src="js/hammer.min.js"></script>
+    <script type="text/javascript">
+        new Hammer(document.getElementById("submit")).on("tap", function () {
+            window.location = "popup?title=aaaaa&content=获得奖励2.5元";
+            //document.querySelector(".promptbox").style.display = "block";
+            //setTimeout(function () {
+            //    document.querySelector(".promptbox").style.display = "none";
+            //    //document.body.style.overflow = "";
+            //}, 3000);
+        });
+    </script>
+</body>
+</html>

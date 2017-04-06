@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="css/global.css?timeStamp=2" rel="stylesheet" />
+    <script src="js/hammer.min.js?timeStamp=1"></script>
+    <script src="js/jquery.min.js?timeStamp=1"></script>
+    <script src="js/utils.js?timeStamp=9"></script>
+    <script src="js/services.js?timeStamp=2"></script>
+</head>
+<body class="serviceDetails">
+    <div class="topImg">
+        <img class="bigImg" data-bind="image" />
+        <img style="width:6.4rem" class="borderBottom" src="images/icons/jczz.png" />
+    </div>
+    <div class="list">
+        <div class="item">
+            <header>
+                <div>
+                    <i></i>
+                    <span data-bind="addTime"></span>
+                </div>
+                <h2 data-bind="title"></h2>
+            </header>
+            <footer>
+                <span class="left"><img src="images/icons/fw_1.png" /><p>服务</p></span>
+                <div class="placeholder"></div>
+                <span><span>单价:</span><span data-bind="price" class="price">137.0元</span><span class="price">元</span></span>
+            </footer>
+        </div>
+        <div class="content">
+            <header><i></i><h2>内容介绍</h2></header>
+            <div data-bind="content" class="body">
+                <!--<img src="images/u3946.jpg" />
+                <p>
+                    同样的单品穿在不同人身上、搭配不一样的单品，总会带来不同时尚FEEL。高领毛衣，冬日里最为常见的时尚单品，也是衣橱里、街头上出镜率最高的百搭神器。瑟瑟冷风中还在寻求那股暖流？让高领毛衣为你保暖同时也增添更多自信，情绪高昂的去享受女性的神奇魅力吧。
+                </p>-->
+            </div>
+            <footer data-bind="addTime">
+                15.11.13 10:22
+            </footer>
+        </div>
+    </div>
+    <script type="text/javascript">
+        window.onresize = function () {
+            document.querySelector("html").setAttribute("style", "font-size:" + document.body.clientWidth / 6.4 + "px");
+        };
+        document.querySelector("html").setAttribute("style", "font-size:" + document.body.clientWidth / 6.4 + "px");
+
+        var ViewModel = services.getzhDetail(getQueryString("advId"), 1);
+        ViewModel.content = decodeURIComponent(escape(window.atob(ViewModel.content)));
+    </script>
+</body>
+</html>
